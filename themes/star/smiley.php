@@ -13,4 +13,3 @@
         "title" => "Smiley",
         "options" => $theme_options
     );
-?>
