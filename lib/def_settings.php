@@ -27,9 +27,9 @@ function rw_enrich_options1(
     $ret->advanced->layout->align = @rw_get_default_value( $settings->advanced->layout->align, new stdClass() );
     $ret->advanced->text = @rw_get_default_value( $settings->advanced->text, new stdClass() );
     $ret->advanced->css = @rw_get_default_value( $settings->advanced->css, new stdClass() );
-    
+
     if ( $fromDefaults ) {
-        
+
         if ( isset( $settings->size ) ) {
             require_once dirname( __FILE__ ) . '/defaults.php';
             global  $DEF_FONT_SIZE, $DEF_LINE_HEIGHT ;
@@ -37,8 +37,8 @@ function rw_enrich_options1(
             $settings->advanced->font->size = @rw_get_default_value( $settings->advanced->font->size, $DEF_FONT_SIZE->{$size} );
             $settings->advanced->layout->lineHeight = @rw_get_default_value( $settings->advanced->layout->lineHeight, $DEF_LINE_HEIGHT->{$size} );
         }
-        
-        
+
+
         if ( isset( $settings->lng ) ) {
             require RW__PATH_LANGUAGES . $settings->lng . '.php';
             $settings->advanced->layout->dir = @rw_get_default_value( $settings->advanced->layout->dir, $dir );
@@ -57,21 +57,21 @@ function rw_enrich_options1(
             $settings->advanced->text->outOf = @rw_get_default_value( $settings->advanced->text->outOf, $dictionary['outOf'] );
             $settings->advanced->text->weRecommend = @rw_get_default_value( $settings->advanced->text->weRecommend, $dictionary['weRecommend'] );
         }
-    
+
     }
-    
+
     $hasTheme = $loadTheme && isset( $settings->theme );
     require_once RW__PATH_THEMES . 'dir.php';
     global  $RW_THEMES ;
     // Get rating type.
     $ret->type = @rw_get_default_value( $settings->type, ( !$hasTheme ? $defaults->type : (( $RW_THEMES['star'][$settings->theme] ? 'star' : 'nero' )) ) );
-    
+
     if ( $hasTheme ) {
         // Load theme options.
         require RW__PATH_THEMES . $RW_THEMES[$ret->type][$settings->theme]['file'];
         return rw_enrich_options1( $settings, rw_enrich_options1( $theme_options, $defaults ) );
     }
-    
+
     $ret->uarid = @rw_get_default_value( $settings->uarid, $defaults->uarid );
     $ret->lng = @rw_get_default_value( $settings->lng, $defaults->lng );
     $ret->url = @rw_get_default_value( $settings->url, $defaults->url );
@@ -282,12 +282,12 @@ function rw_get_default_obj_value(
         $hasValue = true;
         $cur = $obj;
         foreach ( $address as $p ) {
-            
+
             if ( !isset( $cur->{$p} ) ) {
                 $hasValue = false;
                 break;
             }
-            
+
             $cur = $cur->{$p};
         }
         if ( $hasValue ) {
