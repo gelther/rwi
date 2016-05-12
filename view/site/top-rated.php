@@ -2,7 +2,7 @@
 
 /**
  * Top-rated table view file called by ratingwidget()->get_toprated_from_shortcode($shortcode_atts) method.
- * 
+ *
  * Generates the HTML table view for the "ratingwidget_toprated" shortcode.
  * The shortcode attributes are passed from the get_toprated_from_shortcode method to the $VARS variable.
  */
@@ -55,7 +55,7 @@ if ( $rw_ret_obj && count( $rw_ret_obj->data ) ) {
     foreach ( $rw_ret_obj->data as $type => $ratings ) {
         // Now, retrieve the rclass from the type settings
         $rclass = $types[$type]['rclass'];
-        
+
         if ( is_array( $ratings ) && count( $ratings ) > 0 ) {
             $html .= '<div class="rw-top-rated-page-' . $type . '" class="rw-wp-ui-top-rated-list-container">';
             $html .= '<ul class="rw-wp-ui-top-rated-list">';
@@ -65,25 +65,25 @@ if ( $rw_ret_obj && count( $rw_ret_obj->data ) ) {
                 $wp_object = null;
                 $excerpt = '';
                 $permalink = '';
-                
+
                 if ( 'users' === $type ) {
                     $user_id = RatingWidgetPlugin::Urid2UserId( $urid );
                     $wp_object = get_user_by( 'id', $user_id );
-                    
+
                     if ( function_exists( 'is_buddypress' ) ) {
                         $title = trim( strip_tags( bp_core_get_user_displayname( $user_id ) ) );
                         $permalink = bp_core_get_user_domain( $user_id );
                     } else {
-                        
+
                         if ( function_exists( 'is_bbpress' ) ) {
                             $title = trim( strip_tags( bbp_get_user_display_name( $user_id ) ) );
                             $permalink = bbp_get_user_profile_url( $user_id );
                         } else {
                             $wp_object = null;
                         }
-                    
+
                     }
-                    
+
                     // If valid WP_User object, retrieve the avatar URL
                     if ( $wp_object ) {
                         $thumbnail = ratingwidget()->get_user_avatar( $user_id );
@@ -96,8 +96,8 @@ if ( $rw_ret_obj && count( $rw_ret_obj->data ) ) {
                     $permalink = get_permalink( $post_id );
                     $thumbnail = ratingwidget()->GetPostImage( $wp_object );
                 }
-                
-                
+
+
                 if ( $wp_object ) {
                     // Skip null object
                     if ( $thumbnail ) {
@@ -116,12 +116,12 @@ if ( $rw_ret_obj && count( $rw_ret_obj->data ) ) {
                     $html .= "\t\t\t\t\t<li class=\"rw-wp-ui-top-rated-list-item\">\r\n\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t<b class=\"rw-wp-ui-top-rated-list-count\">{$count}</b>\r\n\t\t\t\t\t\t\t<a href=\"{$permalink}\"><img class=\"rw-wp-ui-top-rated-list-item-thumbnail\" src=\"{$thumbnail}\" alt=\"\" /></a>\r\n\t\t\t\t\t\t\t<div class=\"rw-wp-ui-top-rated-list-item-data\">\r\n\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t<a class=\"rw-wp-ui-top-rated-list-item-title\" href=\"{$permalink}\" title=\"{$title}\">{$short}</a>\r\n\t\t\t\t\t\t\t\t\t<div class=\"rw-ui-container rw-class-{$rclass} rw-urid-{$urid} rw-prop-readOnly-true\" data-sync=\"false\"></div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t<p class=\"rw-wp-ui-top-rated-list-item-excerpt\">{$excerpt}</p>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</li>";
                     $count++;
                 }
-            
+
             }
             $html .= '</ul>';
             $html .= '</div>';
         }
-    
+
     }
     // Set a flag that the widget is loaded.
     ratingwidget()->TopRatedWidgetLoaded();
