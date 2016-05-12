@@ -13,4 +13,3 @@
         "title" => "Phuzion Diskonkeys",
         "options" => $theme_options
     );
-?>
