@@ -16,4 +16,3 @@
         "outOf" => "din",
         "weRecommend" => "Vă recomandăm",
     );
-?>
