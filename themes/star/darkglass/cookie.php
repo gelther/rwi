@@ -13,4 +13,3 @@
         "title" => "Dark Glass Cookies",
         "options" => $theme_options
     );
-?>
