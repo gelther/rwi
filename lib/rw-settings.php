@@ -32,12 +32,12 @@ if ( !class_exists( 'RatingWidgetPlugin_Settings' ) ) {
         {
             $this->_saveMode = true;
         }
-        
+
         public function IsSaveMode()
         {
             return $this->_saveMode;
         }
-    
+
     }
     /**
      * put your comment there...
@@ -48,12 +48,12 @@ if ( !class_exists( 'RatingWidgetPlugin_Settings' ) ) {
     {
         return ratingwidget()->settings;
     }
-    
+
     function rw_settings_rating_type()
     {
         return rw_settings()->rating_type;
     }
-    
+
     function rw_options()
     {
         return rw_settings()->options;
