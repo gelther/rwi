@@ -8,7 +8,7 @@ $layout = rw_options()->advanced->layout;
 			<span class="rw-ui-def">Direction:</span>
 		</td>
 		<td>
-			<?php 
+			<?php
 $directions = array(
     'ltr' => __rw( 'ltr' ),
     'rtl' => __rw( 'rtl' ),
@@ -16,32 +16,32 @@ $directions = array(
 foreach ( $directions as $dir => $direction ) {
     $selected = strtolower( $dir ) == $layout->dir;
     ?>
-					<div class="rw-ui-img-radio<?php 
+					<div class="rw-ui-img-radio<?php
     if ( $selected ) {
         echo  ' rw-selected' ;
     }
     ?>
-" onclick="RWM.Set.direction(RW.DIR.<?php 
+" onclick="RWM.Set.direction(RW.DIR.<?php
     echo  strtoupper( $dir ) ;
     ?>
 );">
 						<i class="rw-ui-holder"><i
-								class="rw-ui-sprite rw-ui-large rw-ui-<?php 
+								class="rw-ui-sprite rw-ui-large rw-ui-<?php
     echo  strtolower( $dir ) ;
     ?>
 "></i></i>
-						<span><?php 
+						<span><?php
     echo  $direction ;
     ?>
 </span>
-						<input type="radio" name="rw-direction" value="0"<?php 
+						<input type="radio" name="rw-direction" value="0"<?php
     if ( $selected ) {
         echo  ' checked="checked"' ;
     }
     ?>
  />
 					</div>
-				<?php 
+				<?php
 }
 ?>
 		</td>
@@ -51,7 +51,7 @@ foreach ( $directions as $dir => $direction ) {
 			<span class="rw-ui-def">Alignment:</span>
 		</td>
 		<td>
-			<?php 
+			<?php
 $vers = array( 'top', 'middle', 'bottom' );
 $hors = array( 'left', 'center', 'right' );
 foreach ( $vers as $i => $ver ) {
@@ -60,44 +60,44 @@ foreach ( $vers as $i => $ver ) {
     }
     echo  '<div class="rw-clearfix">' ;
     foreach ( $hors as $j => $hor ) {
-        
+
         if ( $ver == 'middle' && $hor == 'center' ) {
             echo  '<div class="rw-ui-img-radio-holder"></div>' ;
         } else {
             $selected = $ver == $layout->align->ver && $hor == $layout->align->hor;
             ?>
-							<div class="rw-ui-img-radio<?php 
+							<div class="rw-ui-img-radio<?php
             if ( $selected ) {
                 echo  ' rw-selected' ;
             }
             ?>
-" onclick="RWM.Set.align('<?php 
+" onclick="RWM.Set.align('<?php
             echo  $ver . '\', \'' . $hor ;
             ?>
 ')">
 								<i class="rw-ui-holder"><i
-										class="rw-ui-sprite rw-ui-large rw-ui-<?php 
+										class="rw-ui-sprite rw-ui-large rw-ui-<?php
             echo  $ver . $hor ;
             ?>
 "></i></i>
-								<span><?php 
+								<span><?php
             echo  __rw( $ver ) . ' ' . __rw( $hor ) ;
             ?>
 </span>
 								<input type="radio" name="rw-align"
-								       value="<?php 
+								       value="<?php
             echo  $i * 3 + $j ;
             ?>
-"<?php 
+"<?php
             if ( $selected ) {
                 echo  ' checked="checked"' ;
             }
             ?>
  />
 							</div>
-						<?php 
+						<?php
         }
-    
+
     }
     echo  '</div>' ;
 }
@@ -111,7 +111,7 @@ foreach ( $vers as $i => $ver ) {
 		<td>
 			<select
 				onchange="rwStar.setLineHeight(this.value + 'px'); rwNero.setLineHeight(this.value + 'px'); RWM.Code.refresh();">
-				<?php 
+				<?php
 $line_heights = array(
     6,
     8,
