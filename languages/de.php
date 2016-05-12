@@ -16,4 +16,3 @@
         "outOf" => "von",
         "weRecommend" => "Wir empfehlen",
     );
-?>
