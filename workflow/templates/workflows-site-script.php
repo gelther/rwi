@@ -1,7 +1,7 @@
 <?php
     /**
      * Template file called from RatingWidgetPlugin->rw_attach_rating_js method.
-     * 
+     *
      * @package     RatingWidget
      * @copyright   Copyright (c) 2015, Rating-Widget, Inc.
      * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -24,18 +24,18 @@ function Class_WF_Engine( options, $, undef ) {
 			return {
 				toNumber: function( number ) {
 					number = parseFloat( number, 10 );
-					
+
 					if ( isNaN( number ) ) {
 						number = 0;
 					}
-					
+
 					return number;
 				},
 				getAverageRating: function() {
 					var rating = _options.ratingData.rating,
 						ratingInstance = rating.getFirstInstance(),
 						averageRatingString = ratingInstance.formatLabel( "{{rating.avg_rate}}" );
-				
+
 					return Util.toNumber( averageRatingString );
 				},
 				formatText: function( string ) {
@@ -43,7 +43,7 @@ function Class_WF_Engine( options, $, undef ) {
 					string = string.replace( '{{avg_rate}}', Util.getAverageRating() );
 					string = string.replace( '{{post.title}}', _options.currentPost.post_title );
 					string = string.replace( '{{url}}', encodeURIComponent( window.location.href ) );
-					
+
 					return string;
 				}
 			};
@@ -69,15 +69,15 @@ function Class_WF_Engine( options, $, undef ) {
 						$( this ).parents( '.rw-wf-modal:first' ).remove();
 					});
 				};
-			
+
 			_init();
-			
+
 			return {
 				show: function( args ) {
 					args.body = Util.formatText( args.body );
-					
+
 					var modalHTML = _modalHTML;
-					
+
 					if ( args.title ) {
 						args.title = Util.formatText( args.title );
 						modalHTML = modalHTML.replace( '{{modal.title}}', args.title );
@@ -85,9 +85,9 @@ function Class_WF_Engine( options, $, undef ) {
 					} else {
 						modalHTML = _modalHTML.replace( '{{modal.title}}', args.body );
 					}
-					
+
 					var $modal = $( modalHTML );
-					
+
                                         if ( undef !== args.id ) {
                                             $modal.attr( 'id', args.id );
                                         }
@@ -95,11 +95,11 @@ function Class_WF_Engine( options, $, undef ) {
 					if ( ! args.title ) {
 						$modal.addClass( 'no-body' );
 					}
-					
+
 					for ( var buttonId in args.buttons ) {
 						var button = args.buttons[ buttonId ];
 						button.html = Util.formatText( button.html );
-						
+
 						var $button = $( button.html );
 						$button.attr( 'id', buttonId );
 						if ( button.click ) {
@@ -110,7 +110,7 @@ function Class_WF_Engine( options, $, undef ) {
 						$button.addClass( 'rw-wf-button rw-wf-button-primary' );
 						$button.insertBefore( $modal.find( '.rw-wf-modal-footer .rw-wf-button-close' ) );
 					}
-					
+
 					setTimeout(function() {
 						$modal.addClass( 'active' ).appendTo( $( 'body' ) );
 
@@ -200,10 +200,10 @@ function Class_WF_Engine( options, $, undef ) {
 							orCondition.operand,
 							""
 						];
-						
+
 					var rating = _options.ratingData.rating,
 						ratingInstance = rating.getFirstInstance();
-					
+
 					if ( 'category' === operandType ) {
 						for ( var catIdx in _options.currentPostCategories ) {
 							if ( ! _options.currentPostCategories.hasOwnProperty( catIdx ) ) {
@@ -224,7 +224,7 @@ function Class_WF_Engine( options, $, undef ) {
 						if ( -1 !== criteriaSuffixPos ) {
 							rclass = rclass.substring( 0, criteriaSuffixPos );
 						}
-						
+
 						operands[1] = rclass;
 					} else if ( ratingInstance.isStar() && ( 'average-rate' === operandType ) ) {
 						operands[1] = operands[0];
@@ -251,7 +251,7 @@ function Class_WF_Engine( options, $, undef ) {
 		},
 		_evaluateWorkflows = function( eventType ) {
 			var evaluatedWorkflowsCount = 0;
-			
+
 			for ( var workflowId in _options.workflows ) {
 				var workflow = _options.workflows[ workflowId ];
 				if ( -1 === $.inArray( eventType, workflow.eventTypes ) ) {
@@ -264,22 +264,22 @@ function Class_WF_Engine( options, $, undef ) {
 						if ( ! workflow.actions.hasOwnProperty( idx ) ) {
 							continue;
 						}
-						
+
 						var action = _options.actions[ workflow.actions[ idx ] ];
 						if ( undef === action ) {
                                                     continue;
 						}
-                                                
+
                                                 action( workflow, idx );
                                                 evaluatedWorkflowsCount++;
 					}
 				}
 			}
-			
+
 			if ( 'beforeVote' === eventType && evaluatedWorkflowsCount > 0 ) {
 				return false;
 			}
-			
+
 			return true;
 		};
 
@@ -291,18 +291,18 @@ function Class_WF_Engine( options, $, undef ) {
 			if ( 0 === Object.keys( _options.workflows ).length ) {
 				return defaultReturnValue;
 			}
-			
+
 			_options.ratingData = {
 				rating: rating,
 				score: score
 			};
-			
+
 			_options.score = score;
-			
+
 			if ( 0 === Object.keys( _options.actions ).length ) {
 				return defaultReturnValue;
 			}
-			
+
 			return _evaluateWorkflows( eventType );
 		},
 		Modal: Modal,
@@ -328,7 +328,7 @@ if ( ! empty( $active_actions ) ) {
 	}
 }
 ?>
-	
+
 <?php do_action( 'rw_wf_after_init_engine_options' ); ?>
 
 var WF_Engine = new Class_WF_Engine( engineOptions, jQuery );
