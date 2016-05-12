@@ -14,4 +14,3 @@
         "title" => "Green Stars",
         "options" => $theme_options
     );
-?>
