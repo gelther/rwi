@@ -13,4 +13,3 @@
         "title" => "Payment Coins",
         "options" => $theme_options
     );
-?>
