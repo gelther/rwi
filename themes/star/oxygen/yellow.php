@@ -13,4 +13,3 @@
         "title" => "Oxygen Yellow Stars 1",
         "options" => $theme_options
     );
-?>
