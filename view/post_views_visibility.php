@@ -23,36 +23,36 @@ if ( $settings->IsSaveMode() ) {
 <div class="has-sidebar has-right-sidebar">
 	<div class="has-sidebar-content">
 		<div class="postbox rw-body">
-			<h3><?php 
+			<h3><?php
 _erw( 'post-views-settings' );
 ?>
 </h3>
 
 			<div class="inside rw-ui-content-container rw-no-radius">
-				<?php 
+				<?php
 foreach ( $views as $view ) {
     ?>
-					<div class="rw-ui-img-radio rw-ui-hor<?php 
+					<div class="rw-ui-img-radio rw-ui-hor<?php
     if ( $settings->{'show_on_' . $view} ) {
         echo  ' rw-selected' ;
     }
     ?>
 ">
-						<input type="checkbox" name="rw_show_on_<?php 
+						<input type="checkbox" name="rw_show_on_<?php
     echo  $view ;
     ?>
 "
-						       value="true" <?php 
+						       value="true" <?php
     if ( $settings->{'show_on_' . $view} ) {
         echo  ' checked="checked"' ;
     }
     ?>
-> <span><?php 
+> <span><?php
     printf( __rw( 'visibility_show-on-every' ), ucwords( $view ) );
     ?>
 </span>
 					</div>
-				<?php 
+				<?php
 }
 ?>
 			</div>
