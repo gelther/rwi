@@ -13,4 +13,3 @@
         "title" => "Christmas Green Stars",
         "options" => $theme_options
     );
-?>
