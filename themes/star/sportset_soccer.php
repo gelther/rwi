@@ -13,4 +13,3 @@
         "title" => "Sportset Soccer Balls",
         "options" => $theme_options
     );
-?>
