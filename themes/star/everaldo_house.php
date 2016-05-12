@@ -13,4 +13,3 @@
         "title" => "Everaldo House",
         "options" => $theme_options
     );
-?>
