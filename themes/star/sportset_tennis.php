@@ -13,4 +13,3 @@
         "title" => "Sportset Tennis Balls",
         "options" => $theme_options
     );
-?>
