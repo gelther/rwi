@@ -103,7 +103,7 @@ function rw_the_rating_shortcode( $atts )
 
 /**
  * Top-rated shortcode
- * 
+ *
  * @author Leo Fajardo (@leorw)
  * @since 2.4.1
  * @param array $atts
