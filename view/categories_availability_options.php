@@ -9,65 +9,65 @@ if ( is_array( $all_categories ) && count( $all_categories ) > 0 ) {
 		<div id="rw_categories_availability_settings" class="has-sidebar has-right-sidebar">
 			<div class="has-sidebar-content">
 				<div class="postbox rw-body">
-					<h3><?php 
+					<h3><?php
     _erw( 'categories-visibility-settings' );
     ?>
 </h3>
 
 					<div class="inside rw-ui-content-container rw-no-radius">
 						<select data-placeholder="Choose Categories..." multiple>
-							<option value="-1" <?php 
+							<option value="-1" <?php
     if ( $all ) {
         echo  ' selected="selected"' ;
     }
     ?>
-><?php 
+><?php
     _erw( 'all-categories' );
     ?>
 </option>
-							<?php 
+							<?php
     foreach ( $all_categories as $category ) {
         $selected = $all || in_array( $category->cat_ID, rw_settings()->categories );
         ?>
-								<option value="<?php 
+								<option value="<?php
         echo  $category->cat_ID ;
         ?>
-" <?php 
+" <?php
         if ( $selected ) {
             echo  ' selected="selected"' ;
         }
         ?>
-><?php 
+><?php
         echo  $category->cat_name ;
         ?>
 </option>
-							<?php 
+							<?php
     }
     ?>
 						</select>
 
 						<div style="display: none">
-							<input type="checkbox" name="rw_categories[]" value="-1" <?php 
+							<input type="checkbox" name="rw_categories[]" value="-1" <?php
     if ( $all ) {
         echo  ' checked="checked"' ;
     }
     ?>
 >
-							<?php 
+							<?php
     foreach ( $all_categories as $category ) {
         $selected = $all || in_array( $category->cat_ID, rw_settings()->categories );
         ?>
 								<input type="checkbox" name="rw_categories[]"
-								       value="<?php 
+								       value="<?php
         echo  $category->cat_ID ;
         ?>
-" <?php 
+" <?php
         if ( $selected ) {
             echo  ' checked="checked"' ;
         }
         ?>
 >
-							<?php 
+							<?php
     }
     ?>
 						</div>
@@ -109,5 +109,5 @@ if ( is_array( $all_categories ) && count( $all_categories ) > 0 ) {
 				</div>
 			</div>
 		</div>
-	<?php 
+	<?php
 }
