@@ -13,4 +13,3 @@
         "title" => "Phuzion Bugs",
         "options" => $theme_options
     );
-?>
