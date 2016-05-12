@@ -20,19 +20,19 @@ if ( !function_exists( 'mb_substr' ) ) {
 
 }
 if ( !function_exists( 'mb_convert_to_utf8' ) ) {
-    
+
     if ( function_exists( 'mb_convert_encoding' ) && function_exists( 'mb_detect_encoding' ) ) {
         function mb_convert_to_utf8( $str )
         {
             return mb_convert_encoding( $str, 'UTF-8', mb_detect_encoding( $str ) );
         }
-    
+
     } else {
         function mb_convert_to_utf8( $str )
         {
             return $str;
         }
-    
+
     }
 
 }
@@ -44,7 +44,7 @@ if ( !function_exists( 'get_transient' ) ) {
     {
         return false;
     }
-    
+
     function set_transient( $transient, $value, $expiration )
     {
         return false;
