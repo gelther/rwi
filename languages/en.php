@@ -16,7 +16,6 @@
         "outOf" => "out of",
         "weRecommend" => "We Recommend",
     );
-    
+
     global $LNG_EN;
     $LNG_EN = $dictionary;
-?>
