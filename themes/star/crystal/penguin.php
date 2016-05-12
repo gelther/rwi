@@ -13,4 +13,3 @@
         "title" => "Crystal Penguins",
         "options" => $theme_options
     );
-?>
