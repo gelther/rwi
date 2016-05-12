@@ -16,4 +16,3 @@
         "outOf" => "uit",
         "weRecommend" => "ons beveel aan",
     );
-?>
