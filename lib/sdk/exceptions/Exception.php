@@ -2,7 +2,6 @@
 
 /**
  * Thrown when an API call returns an exception.
- *
  */
 class RW_Exception extends Exception
 {
@@ -20,7 +19,7 @@ class RW_Exception extends Exception
         $code = 0;
         $message = 'Unknown error, please check GetResult().';
         $type = '';
-        
+
         if ( isset( $result['error'] ) && is_array( $result['error'] ) ) {
             if ( isset( $result['error']['code'] ) ) {
                 $code = $result['error']['code'];
@@ -32,12 +31,12 @@ class RW_Exception extends Exception
                 $type = $result['error']['type'];
             }
         }
-        
+
         $this->_type = $type;
         $this->_code = $code;
         parent::__construct( $message, ( is_numeric( $code ) ? $code : 0 ) );
     }
-    
+
     /**
      * Return the associated result object returned by the API server.
      *
@@ -47,17 +46,17 @@ class RW_Exception extends Exception
     {
         return $this->_result;
     }
-    
+
     public function getStringCode()
     {
         return $this->_code;
     }
-    
+
     public function getType()
     {
         return $this->_type;
     }
-    
+
     /**
      * To make debugging easier.
      *
