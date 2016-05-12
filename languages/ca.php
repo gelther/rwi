@@ -16,4 +16,3 @@
         "outOf" => "de cada",
         "weRecommend" => "Recomanem",
     );
-?>
