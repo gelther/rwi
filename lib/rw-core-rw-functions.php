@@ -22,12 +22,12 @@ function rw_ends_with( $haystack, $needle )
 function rw_last_index_of( $haystack, $needle )
 {
     $index = strpos( strrev( $haystack ), strrev( $needle ) );
-    
+
     if ( $index ) {
         $index = strlen( $haystack ) - strlen( $needle ) - $index;
         return $index;
     }
-    
+
     return -1;
 }
 
@@ -76,20 +76,20 @@ function rw_get_site_url( $path = '' )
     }
     $anchor = '';
     $anchor_pos = strpos( $path, '#' );
-    
+
     if ( false !== $anchor_pos ) {
         $anchor = substr( $path, $anchor_pos );
         $path = substr( $path, 0, $anchor_pos );
     }
-    
+
     $query = '';
     $query_pos = strpos( $path, '?' );
-    
+
     if ( false !== $query_pos ) {
         $query = substr( $path, $query_pos );
         $path = substr( $path, 0, $query_pos );
     }
-    
+
     return ( empty($path) ? WP_RW__ADDRESS : WP_RW__ADDRESS . '/' . trim( $path, '/' ) . (( false === strpos( $path, '.' ) ? '/' : '' )) . $query . $anchor );
 }
 
@@ -295,7 +295,7 @@ function rw_redirect( $location, $status = 302 )
         return false;
     }
     $location = rw_sanitize_redirect( $location );
-    
+
     if ( $is_IIS ) {
         header( "Refresh: 0;url={$location}" );
     } else {
@@ -373,11 +373,11 @@ function rw_request_is_action( $action, $action_key = 'action' )
     if ( $is_action ) {
         return true;
     }
-    
+
     if ( $action_key == 'action' ) {
         $action_key = 'rw_action';
         return !empty($_REQUEST[$action_key]) && $action === $_REQUEST[$action_key];
     }
-    
+
     return false;
 }
