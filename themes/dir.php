@@ -38,7 +38,7 @@
             'star_flat_blue' => array('type' => 'star', 'file' => 'star/default/flat_blue.php', 'title' => 'Flat Blue Stars'),
 
             'star_flat_magenta' => array('type' => 'star', 'file' => 'star/default/flat_magenta.php', 'title' => 'Flat Magenta Stars'),
-            
+
             'star_lean_heart' => array('type' => 'star', 'file' => 'star/lean_heart.php', 'title' => 'Lean Hearts'),
             'star_heart1' => array('type' => 'star', 'file' => 'star/heart_1.php', 'title' => 'Hearts'),
 
@@ -50,10 +50,10 @@
             'star_smiley' => array('type' => 'star', 'file' => 'star/smiley.php', 'title' => 'Smiley by Daya'),
 
             'star_crystal_correct' => array('type' => 'star', 'file' => 'star/crystal/correct.php', 'title' => 'Crystal Correct'),
-            
+
             'star_gray1' => array('type' => 'star', 'file' => 'star/default/gray_1.php', 'title' => 'Gray Stars'),
             'star_bp1' => array('type' => 'star', 'file' => 'star/buddypress_1.php', 'title' => 'BuddyPress'),
-            
+
             'star_apple_screen' => array('type' => 'star', 'file' => 'star/apple_screen.php', 'title' => 'Apple Screens'),
             'star_phuzion_diskonkey' => array('type' => 'star', 'file' => 'star/phuzion_diskonkey.php', 'title' => 'Phuzion DiskOnKey'),
 
@@ -62,9 +62,9 @@
             'star_everaldo_house' => array('type' => 'star', 'file' => 'star/everaldo_house.php', 'title' => 'Everaldo Houses'),
 
             'star_newyear_tree' => array('type' => 'star', 'file' => 'star/newyear_tree.php', 'title' => 'New-Year Trees'),
-           
+
             'star_payment_coin' => array('type' => 'star', 'file' => 'star/payment_coin.php', 'title' => 'Payment Coins'),
-            
+
             'star_farmfresh_football' => array('type' => 'star', 'file' => 'star/farmfresh_football.php', 'title' => 'Farm Fresh Footballs'),
             'star_sportset_soccer' => array('type' => 'star', 'file' => 'star/sportset_soccer.php', 'title' => 'Sportset Soccer Balls'),
             'star_sportset_tennis' => array('type' => 'star', 'file' => 'star/sportset_tennis.php', 'title' => 'Sportset Tennis Balls'),
@@ -79,7 +79,7 @@
 
             'star_darkglass_cookie' => array('type' => 'star', 'file' => 'star/darkglass/cookie.php', 'title' => 'Dark Glass Cookies'),
             'star_jelly_red' => array('type' => 'star', 'file' => 'star/jelly_red.php', 'title' => 'Red Jellybeans'),
-            
+
             'star_santa_hat' => array('type' => 'star', 'file' => 'star/christmas/santa_hat.php', 'title' => 'Christmas Santa Hat'),
             'star_christmas_yellow_ball' => array('type' => 'star', 'file' => 'star/christmas/yellow_ball.php', 'title' => 'Christmas Yellow Ball 1', 'premium' => false),
             'star_christmas_yellow_deco_ball' => array('type' => 'star', 'file' => 'star/christmas/yellow_deco_ball.php', 'title' => 'Christmas Yellow Ball 2'),
@@ -95,7 +95,7 @@
             'thumbs_bp1' => array('type' => 'nero', 'file' => 'nero/buddypress_1.php', 'title' => 'BuddyPress Thumbs'),
             'arrows_1' => array('type' => 'nero', 'file' => 'nero/n3.php', 'title' => 'Arrows 1'),
             'arrows_2' => array('type' => 'nero', 'file' => 'nero/n4.php', 'title' => 'Arrows 2'),
-            
+
             'check' => array('type' => 'nero', 'file' => 'nero/check.php', 'title' => 'Checkboxes (by Trevor H.)'),
 
             'candles' => array('type' => 'nero', 'file' => 'nero/candles.php', 'title' => 'Candles by Avelim'),
@@ -103,4 +103,3 @@
             'christmas' => array('type' => 'nero', 'file' => 'nero/christmas.php', 'title' => 'Christmas Santa\'s Glove'),
         ),
     );
-?>
