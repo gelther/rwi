@@ -5,13 +5,13 @@ $frequency = rw_options()->frequency;
 <div id="rw_frequency_settings" class="has-sidebar has-right-sidebar">
 	<div class="has-sidebar-content">
 		<div class="postbox rw-body">
-			<h3><?php 
+			<h3><?php
 _erw( 'voting-frequency-settings' );
 ?>
 </h3>
 
 			<div class="inside rw-ui-content-container rw-no-radius" style="padding: 5px; width: 610px;">
-				<?php 
+				<?php
 $frquencies = array(
     array(
     'f'     => 'ONCE',
@@ -52,27 +52,27 @@ $frquencies = array(
 );
 ?>
 				<select>
-					<?php 
+					<?php
 foreach ( $frquencies as $f ) {
     $selected = $frequency == $f['days'];
     ?>
-						<option name="rw_frequency" data-frequency="<?php 
+						<option name="rw_frequency" data-frequency="<?php
     echo  $f['f'] ;
     ?>
 "
-						        value="<?php 
+						        value="<?php
     echo  $f['days'] ;
     ?>
-" <?php 
+" <?php
     if ( $selected ) {
         echo  ' selected="selected"' ;
     }
     ?>
-><?php 
+><?php
     echo  $f['label'] . ' - ' . $f['desc'] ;
     ?>
 </option>
-					<?php 
+					<?php
 }
 ?>
 				</select>
