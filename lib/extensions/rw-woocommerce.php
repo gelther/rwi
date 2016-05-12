@@ -4,7 +4,7 @@ if ( !defined( 'ABSPATH' ) ) {
     die;
 }
 if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) ) {
-    
+
     if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
         define( 'WP_RW__WOOCOMMERCE_SLUG', 'woocommerce' );
         define( 'WP_RW__WOOCOMMERCE_PRODUCTS_OPTIONS', 'rw_woocommerce_products_options' );
@@ -20,22 +20,22 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 $this->rw = ratingwidget();
                 $this->Init();
             }
-            
+
             private function Init()
             {
             }
-            
+
             public function GetSlug()
             {
                 return WP_RW__WOOCOMMERCE_SLUG;
             }
-            
+
             public function HasSettingsMenu()
             {
                 RWLogger::LogEnterence( 'WooCommerce_HasSettingsMenu' );
                 return true;
             }
-            
+
             public function GetSettingsMenuItem()
             {
                 RWLogger::LogEnterence( 'WooCommerce_GetSettingsMenuItem' );
@@ -45,12 +45,12 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                     'slug'       => $this->GetSlug(),
                 );
             }
-            
+
             public function GetRatingClasses()
             {
                 return array( 'product', 'collection-product' );
             }
-            
+
             public function GetSettings()
             {
                 RWLogger::LogEnterence( 'WooCommerce_GetSettings' );
@@ -81,7 +81,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 ),
                 );
             }
-            
+
             public function GetDefaultOptions()
             {
                 RWLogger::LogEnterence( 'WooCommerce_GetDefaultOptions' );
@@ -98,7 +98,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                     WP_RW__WOOCOMMERCE_COLLECTION_PRODUCTS_OPTIONS => $no_info_star,
                 );
             }
-            
+
             private  $_align_option_names_map = array(
                 'product'            => WP_RW__WOOCOMMERCE_PRODUCTS_ALIGN,
                 'collection-product' => WP_RW__WOOCOMMERCE_COLLECTION_PRODUCTS_ALIGN,
@@ -107,7 +107,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
             {
                 return $this->_align_option_names_map[$class];
             }
-            
+
             public function GetDefaultAlign()
             {
                 RWLogger::LogEnterence( 'WooCommerce_GetDefaultAlign' );
@@ -122,48 +122,48 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 ),
                 );
             }
-            
+
             private function IsWooCommerce()
             {
                 return function_exists( 'is_woocommerce' ) && is_woocommerce();
             }
-            
+
             public function IsExtensionPage()
             {
                 RWLogger::LogEnterence( 'WooCommerce_IsExtensionPage' );
-                
+
                 if ( RWLogger::IsOn() ) {
                     RWLogger::Log( 'WooCommerce_IsExtensionPage', 'is_product() = ' . json_encode( is_product() ) );
                     RWLogger::Log( 'WooCommerce_IsExtensionPage', 'is_shop() = ' . json_encode( is_shop() ) );
                 }
-                
+
                 return $this->IsWooCommerce() && (is_product() || is_shop());
             }
-            
+
             public function GetCurrentPageClass()
             {
                 RWLogger::LogEnterence( 'WooCommerce_GetCurrentPageClass' );
                 return ( is_product() ? 'product' : 'collection-product' );
             }
-            
+
             public function BlockLoopRatings()
             {
                 RWLogger::LogEnterence( 'WooCommerce_BlockLoopRatings' );
                 return $this->IsWooCommerce();
             }
-            
+
             public function Hook( $rclass )
             {
                 RWLogger::LogEnterence( 'WooCommerce_Hook' );
-                
+
                 if ( 'product' === $rclass ) {
                     add_action( 'woocommerce_single_product_summary', array( &$this, 'AddProductRating' ), 7 );
                 } else {
                     add_action( 'woocommerce_after_shop_loop_item_title', array( &$this, 'AddCollectionProductRating' ), 7 );
                 }
-            
+
             }
-            
+
             public function AddProductRating()
             {
                 RWLogger::LogEnterence( 'WooCommerce_AddProductRating' );
@@ -172,7 +172,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 echo  $ratingHtml ;
                 RWLogger::LogDeparture( 'WooCommerce_AddProductRating' );
             }
-            
+
             public function AddCollectionProductRating()
             {
                 RWLogger::LogEnterence( 'WooCommerce_AddCollectionProductRating' );
@@ -181,7 +181,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 echo  $ratingHtml ;
                 RWLogger::LogDeparture( 'WooCommerce_AddCollectionProductRating' );
             }
-            
+
             private function GetImageSrc( $product )
             {
                 $post_img_html = $product->get_image( 'large' );
@@ -195,7 +195,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 $src = array_pop( $match );
                 return ( is_string( $src ) ? $src : false );
             }
-            
+
             public function EmbedRatingByProduct(
                 $product,
                 $rclass = 'product',
@@ -225,12 +225,12 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                     true
                 );
             }
-            
+
             public function GetRatingGuid( $element_id, $rclass, $criteria_id = false )
             {
                 return $this->rw->_getPostRatingGuid( $element_id, $criteria_id );
             }
-            
+
             public function GetTopRatedInfo()
             {
                 return array(
@@ -244,15 +244,15 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                 ),
                 );
             }
-            
+
             public function GetElementInfoByRating( $type, $rating )
             {
-                
+
                 if ( 'products' === $type ) {
                     $id = RatingWidgetPlugin::Urid2ForumPostId( $rating->urid );
                     // Make sure product is visible for the current visitor.
                     $status = @get_post_status( $id );
-                    
+
                     if ( false === $status ) {
                         if ( RWLogger::IsOn() ) {
                             RWLogger::Log( 'POST_NOT_EXIST', $id );
@@ -260,7 +260,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                         // Post not exist.
                         return false;
                     } else {
-                        
+
                         if ( 'publish' !== $status && 'private' !== $status ) {
                             if ( RWLogger::IsOn() ) {
                                 RWLogger::Log( 'POST_NOT_VISIBLE', 'status = ' . $status );
@@ -268,7 +268,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                             // Post not yet published.
                             return false;
                         } else {
-                            
+
                             if ( 'private' === $status && !is_user_logged_in() ) {
                                 if ( RWLogger::IsOn() ) {
                                     RWLogger::Log( 'RatingWidgetPlugin_TopRatedWidget::widget', 'POST_PRIVATE && USER_LOGGED_OUT' );
@@ -276,11 +276,11 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                                 // Private post but user is not logged in.
                                 return false;
                             }
-                        
+
                         }
-                    
+
                     }
-                    
+
                     $product = new WC_Product( $id );
                     $post_img = $this->GetImageSrc( $product );
                     return array(
@@ -290,10 +290,10 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
                         'img'       => ( is_string( $post_img ) ? $post_img : '' ),
                     );
                 }
-                
+
                 return false;
             }
-        
+
         }
         global  $rw_wc ;
         function ratingwidget_wc()
@@ -304,7 +304,7 @@ if ( class_exists( 'RatingWidgetPlugin' ) && !class_exists( 'RW_WooCommerce' ) )
             }
             return $rw_wc;
         }
-        
+
         // Register extension
         ratingwidget()->RegisterExtension( ratingwidget_wc() );
     }
