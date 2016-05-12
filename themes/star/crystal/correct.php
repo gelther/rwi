@@ -13,4 +13,3 @@
         "title" => "Crystal Correct",
         "options" => $theme_options
     );
-?>
