@@ -13,4 +13,3 @@
         "title" => "Emblem Art",
         "options" => $theme_options
     );
-?>
