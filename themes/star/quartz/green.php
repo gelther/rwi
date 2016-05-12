@@ -13,4 +13,3 @@
         "title" => "Quartz Green Stars",
         "options" => $theme_options
     );
-?>
