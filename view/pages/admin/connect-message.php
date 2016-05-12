@@ -7,7 +7,7 @@ if ( empty($first_name) ) {
 }
 $site_url = get_site_url();
 ?>
-<p>Hey <?php 
+<p>Hey <?php
 echo  $first_name ;
 ?>
 ,<br>
