@@ -57,7 +57,7 @@ class RatingWidget extends RatingWidgetBase
             $pSecret
         );
     }
-    
+
     public function GetUrl( $pCanonizedPath = '' )
     {
         $address = RW_API__ADDRESS;
@@ -66,7 +66,7 @@ class RatingWidget extends RatingWidgetBase
         }
         return $address . $pCanonizedPath;
     }
-    
+
     /**
      * @var int Clock diff in seconds between current server to API server.
      */
@@ -81,7 +81,7 @@ class RatingWidget extends RatingWidgetBase
     {
         self::$_clock_diff = $pSeconds;
     }
-    
+
     /**
      * @var string http or https
      */
@@ -95,7 +95,7 @@ class RatingWidget extends RatingWidgetBase
     {
         self::$_protocol = 'http';
     }
-    
+
     /**
      * @since 1.0.4
      *
@@ -105,7 +105,7 @@ class RatingWidget extends RatingWidgetBase
     {
         return 'https' === self::$_protocol;
     }
-    
+
     /**
      * @return bool True if successful connectivity to the API endpoint using ping.json endpoint.
      */
@@ -114,12 +114,12 @@ class RatingWidget extends RatingWidgetBase
         $pong = $this->_Api( '/v' . RW_API__VERSION . '/ping.json' );
         return is_object( $pong ) && isset( $pong->api ) && 'pong' === $pong->api;
     }
-    
+
     public function Api( $pPath, $pMethod = 'GET', $pParams = array() )
     {
         return $this->_Api( $this->CanonizePath( $pPath ), $pMethod, $pParams );
     }
-    
+
     public function SignRequest( $pResource, &$opts )
     {
         $eol = '
@@ -127,12 +127,12 @@ class RatingWidget extends RatingWidgetBase
         $content_md5 = '';
         $now = time() - self::$_clock_diff;
         $date = date( 'r', $now );
-        
+
         if ( isset( $opts[CURLOPT_POST] ) && 0 < $opts[CURLOPT_POST] ) {
             $content_md5 = md5( $opts[CURLOPT_POSTFIELDS] );
             $opts[CURLOPT_HTTPHEADER][] = 'Content-MD5: ' . $content_md5;
         }
-        
+
         $opts[CURLOPT_HTTPHEADER][] = 'Date: ' . $date;
         $string_to_sign = implode( $eol, array(
             $opts[CURLOPT_CUSTOMREQUEST],
@@ -144,7 +144,7 @@ class RatingWidget extends RatingWidgetBase
         // Add authorization header.
         $opts[CURLOPT_HTTPHEADER][] = 'Authorization: RW ' . $this->_id . ':' . $this->_public . ':' . self::Base64UrlEncode( hash_hmac( 'sha256', $string_to_sign, $this->_secret ) );
     }
-    
+
     /**
      * Makes an HTTP request. This method can be overridden by subclasses if
      * developers want to do fancier things or use something other than curl to
@@ -172,13 +172,13 @@ class RatingWidget extends RatingWidgetBase
         if ( !is_array( $opts[CURLOPT_HTTPHEADER] ) ) {
             $opts[CURLOPT_HTTPHEADER] = array();
         }
-        
+
         if ( 'POST' === $pMethod || 'PUT' === $pMethod ) {
             $opts[CURLOPT_POST] = count( $params );
             $opts[CURLOPT_POSTFIELDS] = json_encode( $params );
             $opts[CURLOPT_RETURNTRANSFER] = true;
         }
-        
+
         $opts[CURLOPT_URL] = $this->GetUrl( $pCanonizedPath );
         //            $opts[CURLOPT_URL] = 'http://localhost:8080/api/?path=' . $pCanonizedPath;
         $opts[CURLOPT_CUSTOMREQUEST] = $pMethod;
@@ -187,12 +187,12 @@ class RatingWidget extends RatingWidgetBase
         // disable the 'Expect: 100-continue' behaviour. This causes CURL to wait
         // for 2 seconds if the server does not support this header.
         $opts[CURLOPT_HTTPHEADER][] = 'Expect:';
-        
+
         if ( 'https' === substr( strtolower( $pCanonizedPath ), 0, 5 ) ) {
             $opts[CURLOPT_SSL_VERIFYHOST] = false;
             $opts[CURLOPT_SSL_VERIFYPEER] = false;
         }
-        
+
         curl_setopt_array( $ch, $opts );
         $result = curl_exec( $ch );
         /*if (curl_errno($ch) == 60) // CURLE_SSL_CACERT
@@ -207,23 +207,23 @@ class RatingWidget extends RatingWidgetBase
         // the case, curl will try IPv4 first and if that fails, then it will
         // fall back to IPv6 and the error EHOSTUNREACH is returned by the
         // operating system.
-        
+
         if ( $result === false && empty($opts[CURLOPT_IPRESOLVE]) ) {
             $matches = array();
             $regex = '/Failed to connect to ([^:].*): Network is unreachable/';
             if ( preg_match( $regex, curl_error( $ch ), $matches ) ) {
-                
+
                 if ( strlen( @inet_pton( $matches[1] ) ) === 16 ) {
                     //                        self::errorLog('Invalid IPv6 configuration on server, Please disable or get native IPv6 on your server.');
                     self::$CURL_OPTS[CURLOPT_IPRESOLVE] = CURL_IPRESOLVE_V4;
                     curl_setopt( $ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 );
                     $result = curl_exec( $ch );
                 }
-            
+
             }
         }
-        
-        
+
+
         if ( $result === false ) {
             $e = new RW_Exception( array(
                 'error' => array(
@@ -235,11 +235,11 @@ class RatingWidget extends RatingWidgetBase
             curl_close( $ch );
             throw $e;
         }
-        
+
         curl_close( $ch );
         return $result;
     }
-    
+
     /**
      * Get specified rating Rich-Snippets data.
      *
@@ -256,11 +256,11 @@ class RatingWidget extends RatingWidgetBase
     {
         $cached_file_path = dirname( __FILE__ ) . '/ratings.json';
         // Daily cache.
-        
+
         if ( !file_exists( $cached_file_path ) || 24 * 60 * 60 < time() - filemtime( $cached_file_path ) ) {
             // Get ratings rich-snippets data.
             $ratings = $this->Api( '/ratings/rich-snippets.json' );
-            
+
             if ( false !== $ratings ) {
                 // Cache ratings data.
                 file_put_contents( $cached_file_path, json_encode( $ratings ) );
@@ -270,23 +270,23 @@ class RatingWidget extends RatingWidgetBase
                     $ratings = json_decode( file_get_contents( $cached_file_path ) );
                 }
             }
-        
+
         } else {
             // Read cached data from disk.
             $ratings = json_decode( file_get_contents( $cached_file_path ) );
         }
-        
+
         $votes = 0;
         $avg_rate = 0;
         if ( false !== $ratings ) {
             foreach ( $ratings->ratings as $rating ) {
-                
+
                 if ( $pRatingExternalID == $rating->external_id ) {
                     $votes = $rating->approved_count;
                     $avg_rate = $rating->avg_rate;
                     break;
                 }
-            
+
             }
         }
         return array(
@@ -294,7 +294,7 @@ class RatingWidget extends RatingWidgetBase
             'avg_rate' => $avg_rate,
         );
     }
-    
+
     public function EchoAggregateRating( $pRatingExternalID, $pMinVotes = 1, $pMinAvgRate = 0 )
     {
         $snippet_data = $this->GetRichSnippetData( $pRatingExternalID );
