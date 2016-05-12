@@ -13,4 +13,3 @@
         "title" => "Lean Hearts",
         "options" => $theme_options
     );
-?>
