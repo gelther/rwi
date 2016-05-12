@@ -13,4 +13,3 @@
         "title" => "Crystal Skype",
         "options" => $theme_options
     );
-?>
