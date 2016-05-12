@@ -11,4 +11,3 @@
         "title" => "Rating-Widget",
         "options" => $theme_options
     );
-?>
