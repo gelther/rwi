@@ -16,4 +16,3 @@
         "outOf" => "üzerinden",
         "weRecommend" => "Biz Tavsiye",
     );
-?>
