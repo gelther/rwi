@@ -5,7 +5,7 @@
         </td>
         <td>
             <select onchange="rwStar.setStarsNum(this.value); RWM.Code.refresh();">
-                <?php 
+                <?php
 $stars = array(
     1,
     2,
@@ -36,4 +36,4 @@ foreach ( $stars as $num ) {
             </select>
         </td>
     </tr>
-</table> 
+</table>
