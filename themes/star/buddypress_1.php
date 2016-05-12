@@ -8,10 +8,9 @@
     $theme_options->advanced->font->size = "11px";
     $theme_options->advanced->font->hover = new stdClass();
     $theme_options->advanced->font->hover->color = "#999";
-    
+
     $theme = array(
         "name" => "star_bp1",
         "title" => "BuddyPress Stars",
         "options" => $theme_options
     );
-?>
