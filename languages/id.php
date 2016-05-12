@@ -16,4 +16,3 @@
         "outOf" => "dari",
         "weRecommend" => "Kami Merekomendasikan",
     );
-?>
