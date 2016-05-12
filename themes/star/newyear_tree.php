@@ -13,4 +13,3 @@
         "title" => "New-Year Trees",
         "options" => $theme_options
     );
-?>
