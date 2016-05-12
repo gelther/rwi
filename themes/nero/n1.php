@@ -13,4 +13,3 @@
         "title" => "Thumbs 1",
         "options" => $theme_options
     );
-?>
