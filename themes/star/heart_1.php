@@ -14,4 +14,3 @@
         "title" => "Hearts",
         "options" => $theme_options
     );
-?>
