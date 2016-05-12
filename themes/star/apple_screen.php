@@ -13,4 +13,3 @@
         "title" => "Apple Screens",
         "options" => $theme_options
     );
-?>
