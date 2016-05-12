@@ -16,4 +16,3 @@
         "outOf" => "ud af",
         "weRecommend" => "Vi anbefaler",
     );
-?>
