@@ -7,20 +7,20 @@ global  $DEFAULT_OPTIONS ;
 $options_type = rw_options()->type;
 $options_theme = rw_options()->theme;
 ?>
-<td><span class="rw-ui-def"><?php 
+<td><span class="rw-ui-def"><?php
 _erw( 'theme' );
 ?>
 :</span></td>
 <td>
-	<img id="rw_theme_loader" src="<?php 
+	<img id="rw_theme_loader" src="<?php
 echo  WP_RW__ADDRESS_IMG ;
 ?>
 rw.loader.gif" alt=""/>
-	<?php 
+	<?php
 global  $RW_THEMES ;
 foreach ( $RW_THEMES as $type => $type_themes ) {
     ?>
-			<div id="rw_<?php 
+			<div id="rw_<?php
     echo  $type ;
     ?>
 _theme_select" class="rw-select" style="display: none;">
@@ -30,12 +30,12 @@ _theme_select" class="rw-select" style="display: none;">
 				<i class="rw-select-icon"></i>
 
 				<div class="rw-select-frame" style="display: none;"></div>
-				<div id="rw_<?php 
+				<div id="rw_<?php
     echo  $type ;
     ?>
 _theme_selected" class="rw-li rw-selected-item">
-					<?php 
-    
+					<?php
+
     if ( $options_type == $type && isset( $options_theme ) && isset( $type_themes[$options_theme] ) ) {
         require WP_RW__PLUGIN_DIR . '/themes/' . $type_themes[$options_theme]['file'];
         $options = rw_enrich_options1( $theme['options'], $DEFAULT_OPTIONS );
@@ -68,41 +68,41 @@ _theme_selected" class="rw-li rw-selected-item">
         require dirname( dirname( __FILE__ ) ) . "/{$type}_rating.php";
         $selected_theme = $default_theme;
     }
-    
+
     ?>
 				</div>
-				<ul id="rw_<?php 
+				<ul id="rw_<?php
     echo  $type ;
     ?>
 _theme_select_list" class="rw-list" style="display: none;">
-					<?php 
+					<?php
     foreach ( $type_themes as $theme_name => $data ) {
-        
+
         if ( $data['type'] == $type ) {
             require WP_RW__PLUGIN_DIR . '/themes/' . $data['file'];
             $options = rw_enrich_options1( $theme['options'], $DEFAULT_OPTIONS );
             ?>
-								<li class="rw-li<?php 
+								<li class="rw-li<?php
             if ( $selected_theme === $theme_name ) {
                 echo  ' rw-selected' ;
             }
             ?>
 "
-								    onclick="jQuery('#rw_<?php 
+								    onclick="jQuery('#rw_<?php
             echo  $type ;
             ?>
-_theme_selected').html(this.innerHTML); jQuery('#rw_<?php 
+_theme_selected').html(this.innerHTML); jQuery('#rw_<?php
             echo  $type ;
             ?>
-_theme_select_list li.rw-li.rw-selected').removeClass('rw-selected'); this.className += ' rw-selected'; RWM.Set.theme('<?php 
+_theme_select_list li.rw-li.rw-selected').removeClass('rw-selected'); this.className += ' rw-selected'; RWM.Set.theme('<?php
             echo  $theme_name ;
             ?>
-', RW.TYPE.<?php 
+', RW.TYPE.<?php
             echo  strtoupper( $type ) ;
             ?>
 );"
 								    onmouseover="jQuery(this.parentNode.childNodes).removeClass('rw-hover'); this.className += ' rw-hover';">
-									<?php 
+									<?php
             $options->size = 'large';
             $options->advanced->font->size = '20px';
             $options->advanced->layout->lineHeight = '30px';
@@ -116,14 +116,14 @@ _theme_select_list li.rw-li.rw-selected').removeClass('rw-selected'); this.class
             require dirname( dirname( __FILE__ ) ) . "/{$type}_rating.php";
             ?>
 								</li>
-							<?php 
+							<?php
         }
-    
+
     }
     ?>
 				</ul>
 			</div>
-		<?php 
+		<?php
 }
 ?>
 </td>
