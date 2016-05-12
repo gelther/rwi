@@ -13,4 +13,3 @@
         "title" => "Dark Glass Green Stars",
         "options" => $theme_options
     );
-?>
