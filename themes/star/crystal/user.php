@@ -13,4 +13,3 @@
         "title" => "Crystal User",
         "options" => $theme_options
     );
-?>
