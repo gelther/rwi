@@ -13,4 +13,3 @@
         "title" => "Christmas Golden Stars",
         "options" => $theme_options
     );
-?>
