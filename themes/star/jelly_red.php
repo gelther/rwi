@@ -13,4 +13,3 @@
         "title" => "Red Jellybeans",
         "options" => $theme_options
     );
-?>
