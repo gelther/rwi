@@ -19,12 +19,12 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
         public  $version ;
         public function __construct()
         {
-            
+
             if ( RWLogger::IsOn() ) {
                 $params = func_get_args();
                 RWLogger::LogEnterence( 'RatingWidgetPlugin_TopRatedWidget Constructor', $params, true );
             }
-            
+
             $this->rw_address = WP_RW__ADDRESS;
             $widget_ops = array(
                 'classname'   => 'rw_top_rated',
@@ -35,7 +35,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                 RWLogger::LogDeparture( 'RatingWidgetPlugin_TopRatedWidget Constructor' );
             }
         }
-        
+
         private function EncodeHtml( $pHtml )
         {
             // Remove multi-lines.
@@ -44,19 +44,19 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
             $pHtml = preg_replace( '/<!--(.|\\s)*?-->/', '', $pHtml );
             return $pHtml;
         }
-        
+
         public function widget( $args, $instance )
         {
             /**
              * @var RatingWidgetPlugin $rwp
              */
             global  $rwp ;
-            
+
             if ( RWLogger::IsOn() ) {
                 $params = func_get_args();
                 RWLogger::LogEnterence( 'RatingWidgetPlugin_TopRatedWidget.widget', $params, true );
             }
-            
+
             if ( !rw_account()->is_registered() ) {
                 return;
             }
@@ -69,12 +69,12 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
             $types = $this->GetTypesInfo();
             $show_any = false;
             foreach ( $types as $type => $data ) {
-                
+
                 if ( false !== $instance["show_{$type}"] ) {
                     $show_any = true;
                     break;
                 }
-            
+
             }
             if ( RWLogger::IsOn() ) {
                 RWLogger::Log( 'RatingWidgetPlugin_TopRatedWidget', 'show_any = ' . (( $show_any ? 'TRUE' : 'FALSE' )) );
@@ -88,7 +88,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
             );
             $queries = array();
             foreach ( $types as $type => $type_data ) {
-                
+
                 if ( isset( $instance["show_{$type}"] ) && $instance["show_{$type}"] && $instance["{$type}_count"] > 0 ) {
                     $options = ratingwidget()->GetOption( $type_data['options'] );
                     $queries[$type] = array(
@@ -101,15 +101,15 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                     );
                     $since_created = ( isset( $instance["{$type}_since_created"] ) ? (int) $instance["{$type}_since_created"] : WP_RW__TIME_ALL_TIME );
                     // since_created should be at least 24 hours (86400 seconds), skip otherwise.
-                    
+
                     if ( $since_created >= WP_RW__TIME_24_HOURS_IN_SEC ) {
                         $time = current_time( 'timestamp', true ) - $since_created;
                         // c: ISO 8601 full date/time, e.g.: 2004-02-12T15:19:21+00:00
                         $queries[$type]['since_created'] = date( 'c', $time );
                     }
-                
+
                 }
-            
+
             }
             $details['queries'] = urlencode( json_encode( $queries ) );
             $rw_ret_obj = ratingwidget()->RemoteCall( 'action/query/ratings.php', $details, WP_RW__CACHE_TIMEOUT_TOP_RATED );
@@ -151,7 +151,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
             $toprated_data->itemGroups = array();
             if ( count( $rw_ret_obj->data ) > 0 ) {
                 foreach ( $rw_ret_obj->data as $type => $ratings ) {
-                    
+
                     if ( is_array( $ratings ) && count( $ratings ) > 0 ) {
                         $item_group = new stdClass();
                         $item_group->type = $type;
@@ -178,7 +178,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                         $has_thumb = strtolower( $instance["{$type}_style"] ) !== 'legacy';
                         $thumb_width = 160;
                         $thumb_height = 100;
-                        
+
                         if ( $has_thumb ) {
                             switch ( $instance["{$type}_style"] ) {
                                 case '2':
@@ -198,7 +198,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                 'height' => $thumb_height,
                             );
                         }
-                        
+
                         $cell = 0;
                         foreach ( $ratings as $rating ) {
                             $urid = $rating->urid;
@@ -208,12 +208,12 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                             if ( RWLogger::IsOn() ) {
                                 RWLogger::Log( 'HANDLED_ITEM', 'Urid = ' . $urid . '; Class = ' . $rclass . ';' );
                             }
-                            
+
                             if ( 'posts' === $type || 'pages' === $type ) {
                                 $post = null;
                                 $id = RatingWidgetPlugin::Urid2PostId( $urid );
                                 $status = @get_post_status( $id );
-                                
+
                                 if ( false === $status ) {
                                     if ( RWLogger::IsOn() ) {
                                         RWLogger::Log( 'POST_NOT_EXIST', $id );
@@ -221,7 +221,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                     // Post not exist.
                                     continue;
                                 } else {
-                                    
+
                                     if ( 'publish' !== $status && 'private' !== $status ) {
                                         if ( RWLogger::IsOn() ) {
                                             RWLogger::Log( 'POST_NOT_VISIBLE', 'status = ' . $status );
@@ -229,7 +229,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                         // Post not yet published.
                                         continue;
                                     } else {
-                                        
+
                                         if ( 'private' === $status && !is_user_logged_in() ) {
                                             if ( RWLogger::IsOn() ) {
                                                 RWLogger::Log( 'RatingWidgetPlugin_TopRatedWidget::widget', 'POST_PRIVATE && USER_LOGGED_OUT' );
@@ -237,21 +237,21 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                             // Private post but user is not logged in.
                                             continue;
                                         }
-                                    
+
                                     }
-                                
+
                                 }
-                                
+
                                 $post = @get_post( $id );
                                 $title = trim( strip_tags( $post->post_title ) );
                                 $permalink = get_permalink( $post->ID );
                             } else {
-                                
+
                                 if ( 'comments' === $type ) {
                                     $comment = null;
                                     $id = RatingWidgetPlugin::Urid2CommentId( $urid );
                                     $status = @wp_get_comment_status( $id );
-                                    
+
                                     if ( false === $status ) {
                                         if ( RWLogger::IsOn() ) {
                                             RWLogger::Log( 'COMMENT_NOT_EXIST', $id );
@@ -259,7 +259,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                         // Comment not exist.
                                         continue;
                                     } else {
-                                        
+
                                         if ( 'approved' !== $status ) {
                                             if ( RWLogger::IsOn() ) {
                                                 RWLogger::Log( 'COMMENT_NOT_VISIBLE', 'status = ' . $status );
@@ -267,18 +267,18 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                             // Comment not approved.
                                             continue;
                                         }
-                                    
+
                                     }
-                                    
+
                                     $comment = @get_comment( $id );
                                     $title = trim( strip_tags( $comment->comment_content ) );
                                     $permalink = get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment->comment_ID;
                                 } else {
-                                    
+
                                     if ( 'activity_updates' === $type || 'activity_comments' === $type ) {
                                         $id = RatingWidgetPlugin::Urid2ActivityId( $urid );
                                         $activity = new bp_activity_activity( $id );
-                                        
+
                                         if ( !is_object( $activity ) ) {
                                             if ( RWLogger::IsOn() ) {
                                                 RWLogger::Log( 'BP_ACTIVITY_NOT_EXIST', $id );
@@ -286,7 +286,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                             // Activity not exist.
                                             continue;
                                         } else {
-                                            
+
                                             if ( !empty($activity->is_spam) ) {
                                                 if ( RWLogger::IsOn() ) {
                                                     RWLogger::Log( 'BP_ACTIVITY_NOT_VISIBLE (SPAM or TRASH)' );
@@ -294,7 +294,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                 // Activity marked as SPAM or TRASH.
                                                 continue;
                                             } else {
-                                                
+
                                                 if ( !empty($activity->hide_sitewide) ) {
                                                     if ( RWLogger::IsOn() ) {
                                                         RWLogger::Log( 'BP_ACTIVITY_HIDE_SITEWIDE' );
@@ -302,37 +302,37 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                     // Activity marked as hidden in site.
                                                     continue;
                                                 }
-                                            
+
                                             }
-                                        
+
                                         }
-                                        
+
                                         $title = trim( strip_tags( $activity->content ) );
                                         $permalink = bp_activity_get_permalink( $id );
                                     } else {
-                                        
+
                                         if ( 'users' === $type ) {
                                             $id = RatingWidgetPlugin::Urid2UserId( $urid );
-                                            
+
                                             if ( $bpInstalled ) {
                                                 $title = trim( strip_tags( bp_core_get_user_displayname( $id ) ) );
                                                 $permalink = bp_core_get_user_domain( $id );
                                             } else {
-                                                
+
                                                 if ( $bbInstalled ) {
                                                     $title = trim( strip_tags( bbp_get_user_display_name( $id ) ) );
                                                     $permalink = bbp_get_user_profile_url( $id );
                                                 } else {
                                                     continue;
                                                 }
-                                            
+
                                             }
-                                        
+
                                         } else {
-                                            
+
                                             if ( 'forum_posts' === $type || 'forum_replies' === $type ) {
                                                 $id = RatingWidgetPlugin::Urid2ForumPostId( $urid );
-                                                
+
                                                 if ( function_exists( 'bp_forums_get_post' ) ) {
                                                     $forum_post = @bp_forums_get_post( $id );
                                                     if ( !is_object( $forum_post ) ) {
@@ -342,16 +342,16 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                     $page = bb_get_page_number( $forum_post->post_position );
                                                     $permalink = get_topic_link( $id, $page ) . "#post-{$id}";
                                                 } else {
-                                                    
+
                                                     if ( function_exists( 'bbp_get_reply_id' ) ) {
                                                         $forum_item = bbp_get_topic( $id );
-                                                        
+
                                                         if ( is_object( $forum_item ) ) {
                                                             $is_topic = true;
                                                         } else {
                                                             $is_topic = false;
                                                             $forum_item = bbp_get_reply( $id );
-                                                            
+
                                                             if ( !is_object( $forum_item ) ) {
                                                                 if ( RWLogger::IsOn() ) {
                                                                     RWLogger::Log( 'BBP_FORUM_ITEM_NOT_EXIST', $id );
@@ -359,15 +359,15 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                                 // Invalid id (no topic nor reply).
                                                                 continue;
                                                             }
-                                                            
+
                                                             if ( RWLogger::IsOn() ) {
                                                                 RWLogger::Log( 'BBP_IS_TOPIC_REPLY', ( $is_topic ? 'FALSE' : 'TRUE' ) );
                                                             }
                                                         }
-                                                        
+
                                                         // Visible statueses: Public or Closed.
                                                         $visible_statuses = array( bbp_get_public_status_id(), bbp_get_closed_status_id() );
-                                                        
+
                                                         if ( !in_array( $forum_item->post_status, $visible_statuses ) ) {
                                                             if ( RWLogger::IsOn() ) {
                                                                 RWLogger::Log( 'BBP_FORUM_ITEM_HIDDEN', $forum_item->post_status );
@@ -375,13 +375,13 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                             // Item is not public nor closed.
                                                             continue;
                                                         }
-                                                        
+
                                                         $is_reply = !$is_topic;
-                                                        
+
                                                         if ( $is_reply ) {
                                                             // Get parent topic.
                                                             $forum_item = bbp_get_topic( $forum_item->post_parent );
-                                                            
+
                                                             if ( !in_array( $forum_item->post_status, $visible_statuses ) ) {
                                                                 if ( RWLogger::IsOn() ) {
                                                                     RWLogger::Log( 'BBP_PARENT_FORUM_TOPIC_IS_HIDDEN', 'TRUE' );
@@ -389,30 +389,30 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                                 // Parent topic is not public nor closed.
                                                                 continue;
                                                             }
-                                                        
+
                                                         }
-                                                        
+
                                                         $title = trim( strip_tags( $forum_item->post_title ) );
                                                         $permalink = get_permalink( $forum_item->ID );
                                                     } else {
                                                         continue;
                                                     }
-                                                
+
                                                 }
-                                            
+
                                             } else {
                                                 $found_handler = false;
                                                 $extensions = ratingwidget()->GetExtensions();
                                                 foreach ( $extensions as $ext ) {
                                                     $result = $ext->GetElementInfoByRating( $type, $rating );
-                                                    
+
                                                     if ( false !== $result ) {
                                                         $found_handler = true;
                                                         break;
                                                     }
-                                                
+
                                                 }
-                                                
+
                                                 if ( $found_handler ) {
                                                     $id = $result['id'];
                                                     $title = $result['title'];
@@ -427,17 +427,17 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                                 } else {
                                                     continue;
                                                 }
-                                            
+
                                             }
-                                        
+
                                         }
-                                    
+
                                     }
-                                
+
                                 }
-                            
+
                             }
-                            
+
                             $queued = ratingwidget()->QueueRatingData(
                                 $urid,
                                 '',
@@ -465,7 +465,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                             ),
                             );
                             // Add thumb url.
-                            
+
                             if ( $extension_type && is_string( $img ) ) {
                                 $item['page']['img'] = $img;
                             } else {
@@ -473,38 +473,38 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                                     $item['page']['img'] = rw_get_post_thumb_url( $post, $thumb_width, $thumb_height );
                                 }
                             }
-                            
+
                             $item_group->items[] = $item;
                             $cell++;
                             $empty = false;
                         }
                         $toprated_data->itemGroups[] = $item_group;
                     }
-                
+
                 }
             }
-            
+
             if ( true === $empty ) {
             } else {
                 // Set a flag that the widget is loaded.
                 ratingwidget()->TopRatedWidgetLoaded();
                 ?>
-					<b class="rw-ui-recommendations" data-id="<?php 
+					<b class="rw-ui-recommendations" data-id="<?php
                 echo  $toprated_data->id ;
                 ?>
 "></b>
 					<script type="text/javascript">
 						var _rwq = _rwq || [];
-						_rwq.push(['_setRecommendations', <?php 
+						_rwq.push(['_setRecommendations', <?php
                 echo  json_encode( $toprated_data ) ;
                 ?>
 ]);
 					</script>
-				<?php 
+				<?php
             }
-        
+
         }
-        
+
         protected function GetTypesInfo()
         {
             $types = array(
@@ -534,7 +534,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                 $types = array_merge( $types, $ext->GetTopRatedInfo() );
             }
             $bpInstalled = ratingwidget()->IsBuddyPressInstalled();
-            
+
             if ( $bpInstalled ) {
                 $types['activity_updates'] = array(
                     'rclass'  => 'activity-update',
@@ -547,9 +547,9 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                     'options' => WP_RW__ACTIVITY_COMMENTS_OPTIONS,
                 );
             }
-            
+
             $bbInstalled = ratingwidget()->IsBBPressInstalled();
-            
+
             if ( $bpInstalled || $bbInstalled ) {
                 $types['users'] = array(
                     'rclass'  => 'user',
@@ -567,10 +567,10 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                     'options' => WP_RW__FORUM_POSTS_OPTIONS,
                 );
             }
-            
+
             return $types;
         }
-        
+
         public function update( $new_instance, $old_instance )
         {
             // Clear transients to refresh data after Top-Rated Widget update.
@@ -597,7 +597,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
             }
             return $instance;
         }
-        
+
         public function form( $instance )
         {
             $types = $this->GetTypesInfo();
@@ -673,94 +673,94 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 					<div class="rw-toprated-settings-section selected">
 						<div class="rw-section-body">
 							<p><label
-									for="<?php 
+									for="<?php
             echo  $this->get_field_id( 'title' ) ;
             ?>
-"><?php 
+"><?php
             _erw( 'widget-title' );
             ?>
-									: <input id="<?php 
+									: <input id="<?php
             echo  $this->get_field_id( 'title' ) ;
             ?>
 "
-									         name="<?php 
+									         name="<?php
             echo  $this->get_field_name( 'title' ) ;
             ?>
 " type="text"
-									         value="<?php 
+									         value="<?php
             echo  esc_attr( $title ) ;
             ?>
 "/></label></p>
 
 							<p><label
-									for="<?php 
+									for="<?php
             echo  $this->get_field_id( 'title_max_length' ) ;
             ?>
-"><?php 
+"><?php
             _erw( 'title-max-length' );
             ?>
 									: <input style="width: 110px;"
-									         id="<?php 
+									         id="<?php
             echo  $this->get_field_id( 'title_max_length' ) ;
             ?>
 "
-									         name="<?php 
+									         name="<?php
             echo  $this->get_field_name( 'title_max_length' ) ;
             ?>
 "
 									         type="text"
-									         value="<?php 
+									         value="<?php
             echo  esc_attr( $titleMaxLength ) ;
             ?>
 "/></label></p>
 						</div>
 					</div>
-					<?php 
+					<?php
             foreach ( $types as $type => $info ) {
                 $typeTitle = ucwords( str_replace( '_', ' ', $type ) );
                 $checked = '';
                 $selected = '';
-                
+
                 if ( $values["show_{$type}"] == 1 ) {
                     $checked = ' checked="checked"';
                     $selected = ' selected';
                 }
-                
+
                 ?>
-							<div class="rw-toprated-settings-section<?php 
+							<div class="rw-toprated-settings-section<?php
                 echo  $selected ;
                 ?>
 ">
 								<h4>
-									<label for="<?php 
+									<label for="<?php
                 echo  $this->get_field_id( "show_{$type}" ) ;
                 ?>
 " title="On / Off">
 										<input type="checkbox" class="checkbox"
-										       id="<?php 
+										       id="<?php
                 echo  $this->get_field_id( "show_{$type}" ) ;
                 ?>
 "
-										       name="<?php 
+										       name="<?php
                 echo  $this->get_field_name( "show_{$type}" ) ;
                 ?>
 "
-										       value="1"<?php 
+										       value="1"<?php
                 echo  $checked ;
                 ?>
  />
-										<?php 
+										<?php
                 echo  $typeTitle ;
                 ?>
 									</label>
 								</h4>
 
 								<div class="rw-section-body">
-									<?php 
-                
+									<?php
+
                 if ( isset( $info['has_thumbnails'] ) && true === $info['has_thumbnails'] ) {
                     ?>
-										<?php 
+										<?php
                     $styles = array(
                         'legacy'         => 'Titles (Legacy)',
                         'thumbs'         => 'Thumbs (160px X 100px) + Titles',
@@ -768,97 +768,97 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                     );
                     ?>
 										<p>
-											<select id="<?php 
+											<select id="<?php
                     echo  $this->get_field_id( 'style' ) ;
                     ?>
 "
-											        name="<?php 
+											        name="<?php
                     echo  $this->get_field_name( "{$type}_style" ) ;
                     ?>
 "
 											        style="font-size: 11px;">
-												<?php 
+												<?php
                     $i = 0;
                     ?>
-												<?php 
+												<?php
                     foreach ( $styles as $key => $val ) {
                         ?>
 													<option
-														value="<?php 
+														value="<?php
                         echo  $key ;
                         ?>
-"<?php 
+"<?php
                         if ( $key == $values["{$type}_style"] || $i === $values["{$type}_style"] ) {
                             echo  ' selected="selected"' ;
                         }
                         ?>
-><?php 
+><?php
                         echo  $val ;
                         ?>
 </option>
-													<?php 
+													<?php
                         $i++;
                         ?>
-												<?php 
+												<?php
                     }
                     ?>
 											</select>
 										</p>
-									<?php 
+									<?php
                 }
-                
+
                 ?>
-									<?php 
+									<?php
                 ?>
 									<p class="rw-toprated-title">
-										<?php 
+										<?php
                 $disabled = ' disabled="disabled"';
                 $checked = '';
-                
+
                 if ( $values["show_{$type}_title"] == 1 ) {
                     $checked = ' checked="checked"';
                     $disabled = '';
                 }
-                
+
                 ?>
 										<label class="rw-enabler"
-										       for="<?php 
+										       for="<?php
                 echo  $this->get_field_id( "show_{$type}_title" ) ;
                 ?>
 ">
 											<input type="checkbox" title="Show Title" class="checkbox"
-											       id="<?php 
+											       id="<?php
                 echo  $this->get_field_id( "show_{$type}_title" ) ;
                 ?>
 "
-											       name="<?php 
+											       name="<?php
                 echo  $this->get_field_name( "show_{$type}_title" ) ;
                 ?>
 "
-											       value="1"<?php 
+											       value="1"<?php
                 echo  $checked ;
                 ?>
  />
-											<?php 
+											<?php
                 $values["{$type}_title"] = ( empty($values["{$type}_title"]) ? $typeTitle : $values["{$type}_title"] );
                 ?>
-											<?php 
+											<?php
                 _erw( 'title' );
                 ?>
 :
 										</label>
 										<input
-											id="<?php 
+											id="<?php
                 echo  $this->get_field_id( 'title' ) ;
                 ?>
-"<?php 
+"<?php
                 echo  $disabled ;
                 ?>
-											name="<?php 
+											name="<?php
                 echo  $this->get_field_name( "{$type}_title" ) ;
                 ?>
 " type="text"
-											value="<?php 
+											value="<?php
                 echo  esc_attr( $values["{$type}_title"] ) ;
                 ?>
 "
@@ -867,22 +867,22 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 
 									<p>
 										<label
-											for="rss-items-<?php 
+											for="rss-items-<?php
                 echo  $values["{$type}_count"] ;
                 ?>
-"><?php 
+"><?php
                 _erw( 'max-items' );
                 ?>
 											:
-											<select id="<?php 
+											<select id="<?php
                 echo  $this->get_field_id( "{$type}_count" ) ;
                 ?>
 "
-											        name="<?php 
+											        name="<?php
                 echo  $this->get_field_name( "{$type}_count" ) ;
                 ?>
 ">
-												<?php 
+												<?php
                 for ( $i = 1 ;  $i <= 25 ;  $i++ ) {
                     echo  "<option value='{$i}' " . (( $values["{$type}_count"] == $i ? 'selected=\'selected\'' : '' )) . ">{$i}</option>" ;
                 }
@@ -893,24 +893,24 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 
 									<p>
 										<label
-											for="<?php 
+											for="<?php
                 echo  $this->get_field_id( "{$type}_min_votes" ) ;
                 ?>
-"><?php 
+"><?php
                 _erw( 'min-votes' );
                 ?>
 											(>= 1):
 											<input style="width: 40px; text-align: center;"
-											       id="<?php 
+											       id="<?php
                 echo  $this->get_field_id( "{$type}_min_votes" ) ;
                 ?>
 "
-											       name="<?php 
+											       name="<?php
                 echo  $this->get_field_name( "{$type}_min_votes" ) ;
                 ?>
 "
 											       type="text"
-											       value="<?php 
+											       value="<?php
                 echo  esc_attr( $values["{$type}_min_votes"] ) ;
                 ?>
 "/>
@@ -919,22 +919,22 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 
 									<p>
 										<label
-											for="rss-items-<?php 
+											for="rss-items-<?php
                 echo  $values["{$type}_orderby"] ;
                 ?>
-"><?php 
+"><?php
                 _erw( 'orderby' );
                 ?>
 											:
-											<select id="<?php 
+											<select id="<?php
                 echo  $this->get_field_id( "{$type}_orderby" ) ;
                 ?>
 "
-											        name="<?php 
+											        name="<?php
                 echo  $this->get_field_name( "{$type}_orderby" ) ;
                 ?>
 ">
-												<?php 
+												<?php
                 for ( $i = 0, $len = count( $orders ) ;  $i < $len ;  $i++ ) {
                     echo  '<option value="' . $orders[$i] . '"' . (( $values["{$type}_orderby"] == $orders[$i] ? 'selected=\'selected\'' : '' )) . '>' . $orders_labels[$i] . '</option>' ;
                 }
@@ -945,43 +945,43 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 
 									<p>
 										<label
-											for="rss-items-<?php 
+											for="rss-items-<?php
                 echo  $values["{$type}_order"] ;
                 ?>
-"><?php 
+"><?php
                 _erw( 'order' );
                 ?>
 											:
-											<select id="<?php 
+											<select id="<?php
                 echo  $this->get_field_id( "{$type}_order" ) ;
                 ?>
 "
-											        name="<?php 
+											        name="<?php
                 echo  $this->get_field_name( "{$type}_order" ) ;
                 ?>
 ">
 												<option
-													value="DESC"<?php 
+													value="DESC"<?php
                 echo  ( $values["{$type}_order"] == 'DESC' ? ' selected=\'selected\'' : '' ) ;
                 ?>
 >
-													<?php 
+													<?php
                 _erw( 'best' );
                 ?>
- (<?php 
+ (<?php
                 _erw( 'descending' );
                 ?>
 )
 												</option>
 												<option
-													value="ASC"<?php 
+													value="ASC"<?php
                 echo  ( $values["{$type}_order"] == 'ASC' ? ' selected=\'selected\'' : '' ) ;
                 ?>
 >
-													<?php 
+													<?php
                 _erw( 'worst' );
                 ?>
- (<?php 
+ (<?php
                 _erw( 'ascending' );
                 ?>
 )
@@ -990,7 +990,7 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 										</label>
 									</p>
 
-									<?php 
+									<?php
                 $since_created_options = array(
                     WP_RW__TIME_ALL_TIME        => __rw( 'all-time', WP_RW__ID ),
                     WP_RW__TIME_YEAR_IN_SEC     => __rw( 'last-year', WP_RW__ID ),
@@ -1002,35 +1002,35 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
                 ?>
 									<p>
 										<label
-											for="rss-items-<?php 
+											for="rss-items-<?php
                 echo  $values["{$type}_since_created"] ;
                 ?>
-"><?php 
+"><?php
                 printf( __rw( 's-created-in' ), $typeTitle );
                 ?>
-											<select id="<?php 
+											<select id="<?php
                 echo  $this->get_field_id( "{$type}_since_created" ) ;
                 ?>
 "
-											        name="<?php 
+											        name="<?php
                 echo  $this->get_field_name( "{$type}_since_created" ) ;
                 ?>
 ">
-												<?php 
+												<?php
                 foreach ( $since_created_options as $since_created => $display_text ) {
                     ?>
 														<option
-															value="<?php 
+															value="<?php
                     echo  $since_created ;
                     ?>
-" <?php 
+" <?php
                     selected( $values["{$type}_since_created"], $since_created );
                     ?>
-><?php 
+><?php
                     echo  $display_text ;
                     ?>
 </option>
-													<?php 
+													<?php
                 }
                 ?>
 											</select>
@@ -1038,27 +1038,27 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
 									</p>
 								</div>
 							</div>
-						<?php 
+						<?php
             }
             ?>
 				</div>
-			<?php 
+			<?php
         }
-    
+
     }
     function rw_toprated_widget_load_style()
     {
         rw_enqueue_style( 'rw_toprated', 'wordpress/toprated.css' );
         rw_enqueue_style( 'rw_recommendations', 'widget/recommendations.css' );
     }
-    
+
     function rw_toprated_widget_load_admin_style()
     {
         rw_enqueue_style( 'rw_toprated_settings', 'wordpress/toprated-settings.css' );
         rw_enqueue_style( 'rw_recommendations', 'widget/recommendations.css' );
         rw_enqueue_script( 'rw_toprated_settings', 'wordpress/toprated-settings.js' );
     }
-    
+
     function rw_register_toprated_widget()
     {
         //    is_active_widget()
@@ -1066,6 +1066,6 @@ if ( class_exists( 'WP_Widget' ) && !class_exists( 'RatingWidgetPlugin_TopRatedW
         add_action( 'admin_enqueue_scripts', 'rw_toprated_widget_load_admin_style' );
         add_action( 'wp_enqueue_scripts', 'rw_toprated_widget_load_style' );
     }
-    
+
     add_action( 'widgets_init', 'rw_register_toprated_widget' );
 }
