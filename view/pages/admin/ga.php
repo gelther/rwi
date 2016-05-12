@@ -4,11 +4,11 @@
     _gaq.push(['_setAllowLinker', true]);
     _gaq.push(['_setDomainName', 'none']);
     _gaq.push(['_trackPageview']);
-    <?php 
+    <?php
 if ( !$VARS['is_registered'] ) {
     ?>
     _gaq.push(['_trackEvent', 'signup', 'wordpress']);
-    <?php 
+    <?php
 }
 ?>
 
