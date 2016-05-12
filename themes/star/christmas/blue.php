@@ -7,10 +7,9 @@
     $theme_options->advanced->font->color = "darkBlue";
     $theme_options->advanced->font->hover = new stdClass();
     $theme_options->advanced->font->hover->color = "darkBlue";
-    
+
     $theme = array(
         "name" => "star_christmas_blue",
         "title" => "Christmas Blue Stars",
         "options" => $theme_options
     );
-?>
