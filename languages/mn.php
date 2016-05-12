@@ -16,4 +16,3 @@
         "outOf" => "out of",
         "weRecommend" => "We Recommend",
     );
-?>
