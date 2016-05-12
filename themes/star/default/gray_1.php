@@ -13,4 +13,3 @@
         "title" => "Gray Stars",
         "options" => $theme_options
     );
-?>
