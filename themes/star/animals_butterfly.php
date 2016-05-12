@@ -13,4 +13,3 @@
         "title" => "Animals Butterflies",
         "options" => $theme_options
     );
-?>
