@@ -13,4 +13,3 @@
         "title" => "Christmas Santa Hat",
         "options" => $theme_options
     );
-?>
