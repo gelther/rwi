@@ -16,4 +16,3 @@
         "outOf" => "iš",
         "weRecommend" => "Rekomenduojame",
     );
-?>
