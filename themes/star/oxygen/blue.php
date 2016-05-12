@@ -13,4 +13,3 @@
         "title" => "Oxygen Blue Stars 1",
         "options" => $theme_options
     );
-?>
