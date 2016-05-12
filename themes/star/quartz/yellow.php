@@ -13,4 +13,3 @@
         "title" => "Quartz Yellow Stars",
         "options" => $theme_options
     );
-?>
