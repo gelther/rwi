@@ -13,4 +13,3 @@
         "title" => "Farmfresh Footballs",
         "options" => $theme_options
     );
-?>
