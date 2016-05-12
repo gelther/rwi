@@ -13,4 +13,3 @@
         "title" => "Flames",
         "options" => $theme_options
     );
-?>
