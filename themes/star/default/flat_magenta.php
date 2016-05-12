@@ -8,4 +8,3 @@
         "title" => "Flat Magenta Stars",
         "options" => $theme_options
     );
-?>
