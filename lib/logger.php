@@ -23,17 +23,17 @@ class RWLogger
             self::$_logger->echo_on();
         }
     }
-    
+
     public static function PowerOff()
     {
         self::$_on = false;
     }
-    
+
     public static function IsOn()
     {
         return self::$_on;
     }
-    
+
     public static function Log( $pId, $pMessage = '' )
     {
         if ( false === self::$_on ) {
@@ -49,7 +49,7 @@ class RWLogger
             echo  $msg . '<br>' ;
         }
     }
-    
+
     public static function LogEnterence( $pId, $pParams = null, $pLogParams = WP_RW__DEBUG_PARAMS )
     {
         if ( false === self::$_on ) {
@@ -65,7 +65,7 @@ class RWLogger
             echo  $msg . '<br>' ;
         }
     }
-    
+
     public static function LogDeparture( $pId, $pRet = '' )
     {
         if ( false === self::$_on ) {
@@ -81,7 +81,7 @@ class RWLogger
             echo  $msg . '<br>' ;
         }
     }
-    
+
     public static function Output( $pPadding )
     {
         self::$_logger->dump();
