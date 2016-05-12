@@ -13,4 +13,3 @@
         "title" => "Blue Stars",
         "options" => $theme_options
     );
-?>
