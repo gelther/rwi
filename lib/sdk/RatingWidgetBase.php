@@ -58,18 +58,18 @@ abstract class RatingWidgetBase
         $this->_secret = $pSecret;
         $this->_scope = $pScope;
     }
-    
+
     public function CanonizePath( $pPath )
     {
         $pPath = trim( $pPath, '/' );
         $query_pos = strpos( $pPath, '?' );
         $query = '';
-        
+
         if ( false !== $query_pos ) {
             $query = substr( $pPath, $query_pos );
             $pPath = substr( $pPath, 0, $query_pos );
         }
-        
+
         // Trim '.json' suffix.
         $format_length = strlen( '.' . self::FORMAT );
         $start = $format_length * -1;
@@ -92,9 +92,9 @@ abstract class RatingWidgetBase
         }
         return '/v' . RW_API__VERSION . $base . (( !empty($pPath) ? '/' : '' )) . $pPath . '.' . self::FORMAT . $query;
     }
-    
+
     public abstract function MakeRequest( $pCanonizedPath, $pMethod = 'GET', $pParams = array() );
-    
+
     protected function _Api( $pPath, $pMethod = 'GET', $pParams = array() )
     {
         $pMethod = strtoupper( $pMethod );
@@ -113,7 +113,7 @@ abstract class RatingWidgetBase
         }
         return json_decode( $result );
     }
-    
+
     /**
      * Find clock diff between current server to API server.
      *
@@ -126,7 +126,7 @@ abstract class RatingWidgetBase
         $pong = $this->_Api( '/v' . RW_API__VERSION . '/ping.json' );
         return $time - strtotime( $pong->timestamp );
     }
-    
+
     /**
      * Base64 encoding that doesn't need to be urlencode()ed.
      * Exactly the same as base64_encode except it uses
@@ -141,7 +141,7 @@ abstract class RatingWidgetBase
     {
         return base64_decode( strtr( $input, '-_', '+/' ) );
     }
-    
+
     /**
      * Base64 encoding that doesn't need to be urlencode()ed.
      * Exactly the same as base64_encode except it uses
