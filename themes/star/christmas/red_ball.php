@@ -13,4 +13,3 @@
         "title" => "Christmas Red Ball 1",
         "options" => $theme_options
     );
-?>
