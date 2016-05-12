@@ -13,4 +13,3 @@
         "title" => "Dark Glass Yellow Stars",
         "options" => $theme_options
     );
-?>
