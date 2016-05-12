@@ -499,7 +499,7 @@
 						__rw( 'invalid-workflow-name' )
 					)
 				);
-                                
+
                                 echo json_encode( $message );
 				exit;
 			}
@@ -682,7 +682,7 @@
                         if ( empty( $id ) ) {
                             return;
                         }
-                        
+
 			$update = false;
 
 			if ( isset( $this->_workflows->{$id} ) ) {
