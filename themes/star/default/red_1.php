@@ -13,4 +13,3 @@
         "title" => "Red Stars",
         "options" => $theme_options
     );
-?>
