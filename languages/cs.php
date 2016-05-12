@@ -16,4 +16,3 @@
         "outOf" => "ze",
         "weRecommend" => "Doporučujeme",
     );
-?>
