@@ -13,4 +13,3 @@
         "title" => "Crystal Green Stars",
         "options" => $theme_options
     );
-?>
