@@ -16,4 +16,3 @@
         "outOf" => "barra min",
         "weRecommend" => "Nirikomadilkhom",
     );
-?>
