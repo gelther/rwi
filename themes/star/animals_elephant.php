@@ -13,4 +13,3 @@
         "title" => "Animals Elephant",
         "options" => $theme_options
     );
-?>
