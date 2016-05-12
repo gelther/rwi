@@ -8,4 +8,3 @@
         "title" => "Flat Blue Stars",
         "options" => $theme_options
     );
-?>
