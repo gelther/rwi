@@ -11,7 +11,7 @@ php:
     force_control_structure_braces: force
     function_args_separator_whitespace: whitespace
     function_parentheses_inner_whitespace: whitespace
-    indentation_whitespace: tab
+    indentation_whitespace: space
     opening_doc_asterisk: double
     php_tag_casing: lower
     php_tags: full_php_tags
@@ -34,7 +34,7 @@ php:
     whitespace_before_control_structure_parentheses: whitespace
     whitespace_before_doc_asterisk: space
     whitespace_before_else: space
-    whitespace_before_function_brace: space
+    whitespace_before_function_brace: newline
     whitespace_before_function_close: no_space
     whitespace_before_function_parentheses: no_space
 
