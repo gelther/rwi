@@ -24,7 +24,7 @@
 		$VARS = &$params;
 		require_once( wf_get_template_path( $path ) );
 	}
-	
+
 	/* Scripts and styles including.
 	--------------------------------------------------------------------------------------------*/
 	function wf_enqueue_local_style( $handle, $path, $deps = array(), $ver = false, $media = 'all' ) {
