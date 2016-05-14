@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
     die;
 }
 /* Ratings PHP Shortcodes.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_get_post_rating( $postID = false, $class = 'blog-post', $schema = true )
 {
     $postID = ( false === $postID ? get_the_ID() : $postID );
@@ -18,7 +18,7 @@ function rw_the_post_rating( $postID = false, $class = 'blog-post', $schema = tr
 
 function rw_get_rating(
     $urid,
-    $title = '',
+    $title     = '',
     $permalink = '',
     $class = 'blog-post',
     $schema = false
@@ -35,7 +35,7 @@ function rw_get_rating(
 
 function rw_the_rating(
     $urid,
-    $title = '',
+    $title     = '',
     $permalink = '',
     $class = 'blog-post',
     $schema = false
@@ -53,12 +53,12 @@ function rw_the_rating(
 /**
  * Return rating metadata.
  *
- * @param mixed $postID Post id. Defaults to current loop post id.
+ * @param mixed $postID   Post id. Defaults to current loop post id.
  * @param mixed $accuracy The number of digits after floating point.
  */
 function rw_get_post_rating_data( $postID = false, $accuracy = false )
 {
-    $rwp = ratingwidget();
+    $rwp    = ratingwidget();
     $postID = ( false === $postID ? get_the_ID() : $postID );
     return $rwp->GetRatingDataByRatingID( $rwp->_getPostRatingGuid( $postID ), $accuracy );
 }
@@ -75,7 +75,7 @@ function rw_the_user_rating( $userID = false )
 }
 
 /* General rating shortcode.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_the_rating_shortcode( $atts )
 {
     RWLogger::LogEnterence( 'rw_the_rating_shortcode' );
@@ -103,10 +103,10 @@ function rw_the_rating_shortcode( $atts )
 
 /**
  * Top-rated shortcode
- * 
+ *
  * @author Leo Fajardo (@leorw)
  * @since 2.4.1
- * @param array $atts
+ * @param  array  $atts
  * @return string
  */
 function rw_toprated_shortcode( $atts )
@@ -128,7 +128,7 @@ function rw_toprated_shortcode( $atts )
 }
 
 /* Post inline Shortcodes.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_the_post_shortcode( $atts )
 {
     RWLogger::LogEnterence( 'rw_the_post_shortcode' );
