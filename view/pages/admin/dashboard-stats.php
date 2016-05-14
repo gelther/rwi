@@ -11,31 +11,31 @@ extract( $VARS );
 ?>
 <div class="rw-stats-container">
 	<div class="rw-stats-width-half rw-stats-numbers">
-		<span><?php 
+		<span><?php
 //English notation
 echo  number_format( $ratings ) ;
 ?>
 </span>
-		<?php 
+		<?php
 echo  _n(
-    __rw( 'rating' ),
-    __rw( 'ratings' ),
-    $ratings,
-    WP_RW__ID
+	__rw( 'rating' ),
+	__rw( 'ratings' ),
+	$ratings,
+	WP_RW__ID
 ) ;
 ?>
 	</div>
 	<div class="rw-stats-width-half rw-stats-numbers">
-		<span><?php 
+		<span><?php
 echo  number_format( $votes ) ;
 ?>
 </span>
-		<?php 
+		<?php
 echo  _n(
-    __rw( 'vote' ),
-    __rw( 'votes' ),
-    $votes,
-    WP_RW__ID
+	__rw( 'vote' ),
+	__rw( 'votes' ),
+	$votes,
+	WP_RW__ID
 ) ;
 ?>
 	</div>
@@ -44,14 +44,14 @@ echo  _n(
 			<p>
 				<a href="https://twitter.com/ratingwidget" target="blank" class="rw-stats-share-link">
 					<span class="rw-stats-icon rw-stats-icon-twitter"></span>
-					<span class="rw-stats-icon-label"><?php 
+					<span class="rw-stats-icon-label"><?php
 _erw( 'follow-twitter' );
 ?>
 </span>
 				</a>
 				<a href="https://www.facebook.com/rating.widget" target="blank" class="rw-stats-share-link">
 					<span class="rw-stats-icon rw-stats-icon-facebook"></span>
-					<span class="rw-stats-icon-label"><?php 
+					<span class="rw-stats-icon-label"><?php
 _erw( 'like-on-facebook' );
 ?>
 </span>

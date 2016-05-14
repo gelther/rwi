@@ -2,12 +2,12 @@
 
 $current_user = wp_get_current_user();
 $first_name = $current_user->user_firstname;
-if ( empty($first_name) ) {
-    $first_name = $current_user->nickname;
+if ( empty( $first_name ) ) {
+	$first_name = $current_user->nickname;
 }
 $site_url = get_site_url();
 ?>
-<p>Hey <?php 
+<p>Hey <?php
 echo  $first_name ;
 ?>
 ,<br>

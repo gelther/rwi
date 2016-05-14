@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="<?php 
+	<meta charset="<?php
 bloginfo( 'charset' );
 ?>
 ">
 	<meta name="viewport" content="width=device-width">
-	<title><?php 
+	<title><?php
 _erw( 'toprated-table-win_title' );
 ?>
 </title>
-	<link rel="stylesheet" href="<?php 
+	<link rel="stylesheet" href="<?php
 echo  WP_RW__PLUGIN_URL ;
 ?>
 resources/css/toprated-shortcode-old.css"/>
@@ -20,7 +20,7 @@ resources/css/toprated-shortcode-old.css"/>
 	<div class="tabs">
 		<ul>
 			<li id="rw-options-tab" aria-controls="rw-options-panel" class="current">
-				<span><?php 
+				<span><?php
 _erw( 'table-options' );
 ?>
 </span></li>
@@ -30,7 +30,7 @@ _erw( 'table-options' );
 		<div id="rw-options-panel" class="panel current">
 			<table>
 				<tr>
-					<th><label for="rw-toprated-type"><?php 
+					<th><label for="rw-toprated-type"><?php
 _erw( 'type' );
 ?>
 :</label></th>
@@ -40,7 +40,7 @@ _erw( 'type' );
 					</td>
 				</tr>
 				<tr>
-					<th><?php 
+					<th><?php
 _erw( 'direction' );
 ?>
 :</th>
@@ -48,12 +48,12 @@ _erw( 'direction' );
 						<div id='rw-toprated-direction'>
 							<label class="rw-toprated-ltr"><input name="rw-toprated-direction" value="ltr" type="radio"
 							                                      checked/>
-								<span><?php 
+								<span><?php
 _erw( 'ltr' );
 ?>
 </span></label> <label><input
 									name="rw-toprated-direction" value="rtl" type="radio"/>
-								<span><?php 
+								<span><?php
 _erw( 'rtl' );
 ?>
 </span></label>
@@ -61,7 +61,7 @@ _erw( 'rtl' );
 					</td>
 				</tr>
 				<tr>
-					<th><label for="rw-toprated-min-votes"><?php 
+					<th><label for="rw-toprated-min-votes"><?php
 _erw( 'min-votes' );
 ?>
  (>=1):</label></th>
@@ -70,7 +70,7 @@ _erw( 'min-votes' );
 					</td>
 				</tr>
 				<tr>
-					<th><label for="rw-toprated-count"><?php 
+					<th><label for="rw-toprated-count"><?php
 _erw( 'max-items' );
 ?>
 :</label></th>
@@ -80,29 +80,29 @@ _erw( 'max-items' );
 					</td>
 				</tr>
 				<tr>
-					<th><label for="rw-toprated-orderby"><?php 
+					<th><label for="rw-toprated-orderby"><?php
 _erw( 'orderby' );
 ?>
 :</label></th>
 					<td>
 						<select id='rw-toprated-orderby'>
-							<option value="avgrate"><?php 
+							<option value="avgrate"><?php
 _erw( 'average-rate' );
 ?>
 </option>
-							<option value="votes"><?php 
+							<option value="votes"><?php
 _erw( 'votes-number' );
 ?>
 </option>
-							<option value="likes"><?php 
+							<option value="likes"><?php
 _erw( 'likes-for-thumbs' );
 ?>
 </option>
-							<option value="created"><?php 
+							<option value="created"><?php
 _erw( 'created' );
 ?>
 </option>
-							<option value="updated"><?php 
+							<option value="updated"><?php
 _erw( 'last-updated' );
 ?>
 </option>
@@ -110,23 +110,23 @@ _erw( 'last-updated' );
 					</td>
 				</tr>
 				<tr>
-					<th><label for="rw-toprated-order"><?php 
+					<th><label for="rw-toprated-order"><?php
 _erw( 'order' );
 ?>
 :</label></th>
 					<td>
 						<select id='rw-toprated-order'>
-							<option value="DESC"><?php 
+							<option value="DESC"><?php
 _erw( 'best' );
 ?>
- (<?php 
+ (<?php
 _erw( 'descending' );
 ?>
 )</option>
-							<option value="ASC"><?php 
+							<option value="ASC"><?php
 _erw( 'worst' );
 ?>
- (<?php 
+ (<?php
 _erw( 'ascending' );
 ?>
 )</option>
@@ -134,33 +134,33 @@ _erw( 'ascending' );
 					</td>
 				</tr>
 				<tr>
-					<th><label for="rw-toprated-created-in"><?php 
+					<th><label for="rw-toprated-created-in"><?php
 _erw( 'created-in' );
 ?>
 :</label></th>
 					<td>
 						<select id='rw-toprated-created-in'>
-							<option value="all_time"><?php 
+							<option value="all_time"><?php
 _erw( 'all-time' );
 ?>
 </option>
-							<option value="last_year"><?php 
+							<option value="last_year"><?php
 _erw( 'last-year' );
 ?>
 </option>
-							<option value="last_6_months"><?php 
+							<option value="last_6_months"><?php
 printf( __rw( 'last-x-months' ), 6 );
 ?>
 </option>
-							<option value="last_30_days"><?php 
+							<option value="last_30_days"><?php
 printf( __rw( 'last-x-days' ), 30 );
 ?>
 </option>
-							<option value="last_7_days"><?php 
+							<option value="last_7_days"><?php
 printf( __rw( 'last-x-days' ), 7 );
 ?>
 </option>
-							<option value="last_24_hours"><?php 
+							<option value="last_24_hours"><?php
 printf( __rw( 'last-x-hours' ), 24 );
 ?>
 </option>
@@ -170,7 +170,7 @@ printf( __rw( 'last-x-hours' ), 24 );
 				<tr>
 					<td colspan='2'>
 						<div
-							id="rw-toprated-note"><?php 
+							id="rw-toprated-note"><?php
 _erw( 'add-table_shortcode-desc' );
 ?>
 </div>
@@ -180,14 +180,14 @@ _erw( 'add-table_shortcode-desc' );
 		</div>
 	</div>
 	<div class="mceActionPanel">
-		<input type="submit" id="rw-toprated-insert-shortcode" value="<?php 
+		<input type="submit" id="rw-toprated-insert-shortcode" value="<?php
 _erw( 'add-table' );
 ?>
 "/>
 	</div>
 </form>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="<?php 
+<script type="text/javascript" src="<?php
 echo  includes_url( 'js/tinymce/tiny_mce_popup.js' ) ;
 ?>
 "></script>

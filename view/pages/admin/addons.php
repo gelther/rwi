@@ -1,28 +1,28 @@
 <?php
 
-/*
+/**
  * The content of the Add Ons page.
  * Called from addons_settings_page_render method in rating-widget.php
  */
-$addons = ratingwidget()->get_addons();
+$addons               = ratingwidget()->get_addons();
 $admin_notice_classes = 'addons-page-notice update-nag';
 global  $wp_version ;
 // Use additional class for the different versions of WordPress
 // in order to have the correct message styles.
 
 if ( $wp_version < 3 ) {
-    $admin_notice_classes .= ' updated';
+	$admin_notice_classes .= ' updated';
 } else {
-    if ( $wp_version >= 3.8 ) {
-        $admin_notice_classes .= ' success';
-    }
+	if ( $wp_version >= 3.8 ) {
+		$admin_notice_classes .= ' success';
+	}
 }
 
 $message = __rw( 'addons_thanks-subscribing-mailing-list' );
 ratingwidget()->Notice( $message, $admin_notice_classes );
 ?>
 	<div class="wrap rw-dir-ltr">
-		<h2 class="entry-title"><?php 
+		<h2 class="entry-title"><?php
 _erw( 'addons_title' );
 ?>
 </h2>
@@ -33,85 +33,85 @@ _erw( 'addons_title' );
 					<div class="inside rw-ui-content-container rw-no-radius">
 						<div class="entry-content">
 							<ul class="rw-addon-grid clearfix">
-								<?php 
+								<?php
 foreach ( $addons as $idx => $addon ) {
-    $pricing = $addon['pricing'][0];
-    $price = $pricing['annual_price'];
-    $is_free = null === $price;
-    ?>
-										<li class="rw-addon<?php 
-    echo  ( $is_free ? ' free' : '' ) ;
-    ?>
+	$pricing = $addon['pricing'][0];
+	$price   = $pricing['annual_price'];
+	$is_free = null === $price;
+	?>
+										<li class="rw-addon<?php
+	echo  ( $is_free ? ' free' : '' ) ;
+	?>
 "
-										    data-idx="<?php 
-    echo  $idx ;
-    ?>
+										    data-idx="<?php
+	echo  $idx ;
+	?>
 ">
 											<div class="rw-addon-inner">
 												<a href="#" class="rw-addon-overlay"></a>
 
 												<div class="rw-addon-content-wrapper">
 													<div class="rw-addon-content"
-													     style="background-image: url('<?php 
-    echo  $addon['thumbnail_url'] ;
-    ?>
+													     style="background-image: url('<?php
+	echo  $addon['thumbnail_url'] ;
+	?>
 ')">
 														<ul>
 															<li class="rw-addon-banner"></li>
 															<li class="rw-addon-title">
-																<?php 
-    echo  $addon['title'] ;
-    ?>
+																<?php
+	echo  $addon['title'] ;
+	?>
 															</li>
 													<span>
 														<li class="rw-addon-price">
-															<?php 
-    echo  $price ;
-    ?>
+															<?php
+	echo  $price ;
+	?>
  <span class="price-per">/ year</span>
 														</li>
 													</span>
 															<li class="rw-addon-rating">
 														<span class="rw-addon-rating-reviews">
 															<span
-																class="purchase-text"><?php 
-    echo  ( $is_free ? __rw( 'free' ) : __rw( 'purchase' ) ) ;
-    ?>
+																class="purchase-text"><?php
+	echo  ( $is_free ? __rw( 'free' ) : __rw( 'purchase' ) ) ;
+	?>
 </span>
 															<input type="submit" class="button button-primary"
-															       value="<?php 
-    _erw( 'purchase' );
-    ?>
+															       value="<?php
+	_erw( 'purchase' );
+	?>
 "/>
 														</span>
-																<?php 
-    // Calculate the number of half stars needed for the star-rating display.
-    $avg_rate = $addon['avg_rate'];
-    $rating = intval( $avg_rate );
-    $avg_rate = round( $avg_rate, 0 );
-    $score = $rating * 10;
-    if ( $rating < $avg_rate ) {
-        // Add one half-star
-        $score += 5;
-    }
-    ?>
+																<?php
+	// Calculate the number of half stars needed for the star-rating display.
+	$avg_rate = $addon['avg_rate'];
+	$rating   = intval( $avg_rate );
+	$avg_rate = round( $avg_rate, 0 );
+	$score    = $rating * 10;
+	if ( $rating < $avg_rate ) {
+		// Add one half-star
+		$score += 5;
+	}
+	?>
 																<span
-																	class="appcard-rating-star appcard-rating-<?php 
-    echo  $score ;
-    ?>
+																	class="appcard-rating-star appcard-rating-<?php
+	echo  $score ;
+	?>
 "><span></span></span>
 															</li>
 															<li class="rw-addon-description">
-																<?php 
-    echo  $addon['description'] ;
-    ?>
+																<?php
+	echo  $addon['description'] ;
+	?>
 															</li>
 														</ul>
 													</div>
 												</div>
 											</div>
 										</li>
-									<?php 
+									<?php
 }
 ?>
 							</ul>
@@ -120,13 +120,13 @@ foreach ( $addons as $idx => $addon ) {
 				</div>
 			</div>
 			<div id="rw-addons-popup-dialog">
-				<p><?php 
+				<p><?php
 _erw( 'addons_not-ready' );
 ?>
 </p>
 				<input type="hidden" class="addon-action" value=""/>
 			</div>
-			<input type="hidden" id="wp-version" value="<?php 
+			<input type="hidden" id="wp-version" value="<?php
 echo  $wp_version ;
 ?>
 "
@@ -139,7 +139,7 @@ echo  $wp_version ;
 					var $popupDialog = $("#rw-addons-popup-dialog");
 
 					var dialogOptions = {
-						title        : '<?php 
+						title        : '<?php
 _erw( 'oops' );
 ?>
 ...',
@@ -150,7 +150,7 @@ _erw( 'oops' );
 						width        : 430,
 						buttons      : {
 							// Add button labels in this way so that it will work with WordPress 3.0 and below
-							<?php 
+							<?php
 echo  json_encode( __rw( 'addons_add-to-waiting-list' ) ) ;
 ?>
 : function () {
@@ -158,7 +158,7 @@ echo  json_encode( __rw( 'addons_add-to-waiting-list' ) ) ;
 								sendData({addon_action: $popupDialog.find('.addon-action').val(), add_user: true});
 								$popupDialog.dialog('close');
 							},
-							<?php 
+							<?php
 echo  json_encode( __rw( 'addons_silent-report' ) ) ;
 ?>
 : function () {
@@ -231,7 +231,7 @@ echo  json_encode( __rw( 'addons_silent-report' ) ) ;
 				function sendData(extraDetails) {
 					var data = {
 						action   : 'rw-addon-request',
-						_n       : '<?php 
+						_n       : '<?php
 echo  wp_create_nonce( 'rw_send_addon_request' ) ;
 ?>
 ',
@@ -242,7 +242,7 @@ echo  wp_create_nonce( 'rw_send_addon_request' ) ;
 						$.extend(data, extraDetails);
 					}
 
-					var ajaxUrl = '<?php 
+					var ajaxUrl = '<?php
 echo  admin_url( 'admin-ajax.php' ) ;
 ?>
 ';
@@ -251,8 +251,9 @@ echo  admin_url( 'admin-ajax.php' ) ;
 						data: data
 					});
 				}
+
 			})(jQuery);
 		</script>
 	</div>
-<?php 
+<?php
 fs_require_template( 'powered-by.php' );

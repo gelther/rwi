@@ -9,7 +9,7 @@ $settings = rw_settings();
 					<div id="rw_identify_by" class="has-sidebar has-right-sidebar">
 						<div class="has-sidebar-content">
 							<div class="postbox rw-body">
-								<h3><?php 
+								<h3><?php
 _erw( 'visitor-identification_title' );
 ?>
 </h3>
@@ -17,78 +17,78 @@ _erw( 'visitor-identification_title' );
 								<div class="inside rw-ui-content-container rw-no-radius"
 								     style="padding: 5px; width: 610px;">
 									<div
-										class="rw-ui-img-radio rw-ui-hor<?php 
+										class="rw-ui-img-radio rw-ui-hor<?php
 if ( 'laccount' === $settings->identify_by ) {
-    echo  ' rw-selected' ;
+	echo  ' rw-selected' ;
 }
 ?>
 ">
 										<input type="radio" name="rw_identify_by"
-										       value="laccount" <?php 
+										       value="laccount" <?php
 if ( 'laccount' === $settings->identify_by ) {
-    echo  ' checked="checked"' ;
+	echo  ' checked="checked"' ;
 }
 ?>
 >
-										<span><?php 
+										<span><?php
 _erw( 'visitor-identification_by-cookie' );
 ?>
 </span>
 									</div>
-									<div class="rw-ui-img-radio rw-ui-hor<?php 
+									<div class="rw-ui-img-radio rw-ui-hor<?php
 if ( 'ip' === $settings->identify_by ) {
-    echo  ' rw-selected' ;
+	echo  ' rw-selected' ;
 }
 ?>
-"<?php 
+"<?php
 
-if ( !rw_fs()->is_plan_or_trial( 'professional' ) ) {
-    ?>
- data-alert="<?php 
-    _erw( 'visitor-identification_by-cookie_pro-only', WP_RW__ID );
-    ?>
-"<?php 
+if ( ! rw_fs()->is_plan_or_trial( 'professional' ) ) {
+	?>
+ data-alert="<?php
+	_erw( 'visitor-identification_by-cookie_pro-only', WP_RW__ID );
+	?>
+"<?php
 }
 
 ?>
 >
 										<input type="radio" name="rw_identify_by"
-										       value="ip" <?php 
+										       value="ip" <?php
 if ( 'ip' === $settings->identify_by ) {
-    echo  ' checked="checked"' ;
+	echo  ' checked="checked"' ;
 }
 ?>
 >
-										<span><?php 
+										<span><?php
 _erw( 'visitor-identification_by-ip' );
 ?>
- <b><?php 
+ <b><?php
 _erw( 'visitor-identification_by-ip_for-contests' );
 ?>
-</b> <?php 
+</b> <?php
 _erw( 'visitor-identification_by-ip_pro-only' );
 ?>
 .</span>
 									</div>
 									<div
-										class="rw-ui-img-radio rw-ui-hor<?php 
+										class="rw-ui-img-radio rw-ui-hor<?php
 if ( 'account' === $settings->identify_by ) {
-    echo  ' rw-selected' ;
+	echo  ' rw-selected' ;
 }
 ?>
 "
-										data-alert="<?php 
+										data-alert="<?php
 _erw( 'visitor-identification_by-social' );
 ?>
 ">
 										<input type="radio" name="rw_identify_by"
-										       value="account" <?php 
+										       value="account" <?php
 if ( 'account' === $settings->identify_by ) {
-    echo  ' checked="checked"' ;
+	echo  ' checked="checked"' ;
 }
 ?>
 >
-										<span><?php 
+										<span><?php
 _erw( 'visitor-identification_by-social_desc' );
 ?>
 </span>
@@ -100,47 +100,47 @@ _erw( 'visitor-identification_by-social_desc' );
 					<div id="rw_flash_settings" class="has-sidebar has-right-sidebar">
 						<div class="has-sidebar-content">
 							<div class="postbox rw-body">
-								<h3><?php 
+								<h3><?php
 _erw( 'flash-dependency' );
 ?>
 </h3>
 
 								<div class="inside rw-ui-content-container rw-no-radius"
 								     style="padding: 5px; width: 610px;">
-									<div class="rw-ui-img-radio rw-ui-hor<?php 
+									<div class="rw-ui-img-radio rw-ui-hor<?php
 if ( $settings->flash_dependency ) {
-    echo  ' rw-selected' ;
+	echo  ' rw-selected' ;
 }
 ?>
 ">
 										<i class="rw-ui-sprite rw-ui-flash"></i> <input type="radio"
 										                                                name="rw_flash_dependency"
-										                                                value="true" <?php 
+										                                                value="true" <?php
 if ( $settings->flash_dependency ) {
-    echo  ' checked="checked"' ;
+	echo  ' checked="checked"' ;
 }
 ?>
 >
-										<span><?php 
+										<span><?php
 _erw( 'flash-dependency_enable-desc' );
 ?>
 </span>
 									</div>
-									<div class="rw-ui-img-radio rw-ui-hor<?php 
-if ( !$settings->flash_dependency ) {
-    echo  ' rw-selected' ;
+									<div class="rw-ui-img-radio rw-ui-hor<?php
+if ( ! $settings->flash_dependency ) {
+	echo  ' rw-selected' ;
 }
 ?>
 ">
 										<i class="rw-ui-sprite rw-ui-flash-disabled"></i> <input type="radio"
 										                                                         name="rw_flash_dependency"
-										                                                         value="false" <?php 
-if ( !$settings->flash_dependency ) {
-    echo  ' checked="checked"' ;
+										                                                         value="false" <?php
+if ( ! $settings->flash_dependency ) {
+	echo  ' checked="checked"' ;
 }
 ?>
 >
-										<span><?php 
+										<span><?php
 _erw( 'flash-dependency_disable-desc' );
 ?>
 </span>
@@ -155,39 +155,39 @@ _erw( 'flash-dependency_disable-desc' );
 					<div id="rw_mobile_settings" class="has-sidebar has-right-sidebar">
 						<div class="has-sidebar-content">
 							<div class="postbox rw-body">
-								<h3><?php 
+								<h3><?php
 _erw( 'mobile-settings' );
 ?>
 </h3>
 
 								<div class="inside rw-ui-content-container rw-no-radius"
 								     style="padding: 5px; width: 610px;">
-									<div class="rw-ui-img-radio rw-ui-hor<?php 
+									<div class="rw-ui-img-radio rw-ui-hor<?php
 if ( $settings->show_on_mobile ) {
-    echo  ' rw-selected' ;
+	echo  ' rw-selected' ;
 }
 ?>
 ">
 										<i class="rw-ui-sprite rw-ui-mobile"></i> <input type="radio"
 										                                                 name="rw_show_on_mobile"
-										                                                 value="true" <?php 
+										                                                 value="true" <?php
 if ( $settings->show_on_mobile ) {
-    echo  ' checked="checked"' ;
+	echo  ' checked="checked"' ;
 }
 ?>
 > <span>Show ratings on Mobile devices.</span>
 									</div>
-									<div class="rw-ui-img-radio rw-ui-hor<?php 
-if ( !$settings->show_on_mobile ) {
-    echo  ' rw-selected' ;
+									<div class="rw-ui-img-radio rw-ui-hor<?php
+if ( ! $settings->show_on_mobile ) {
+	echo  ' rw-selected' ;
 }
 ?>
 ">
 										<i class="rw-ui-sprite rw-ui-mobile-disabled"></i> <input type="radio"
 										                                                          name="rw_show_on_mobile"
-										                                                          value="false" <?php 
-if ( !$settings->show_on_mobile ) {
-    echo  ' checked="checked"' ;
+										                                                          value="false" <?php
+if ( ! $settings->show_on_mobile ) {
+	echo  ' checked="checked"' ;
 }
 ?>
 > <span>Hide ratings on Mobile devices.</span>
@@ -198,12 +198,12 @@ if ( !$settings->show_on_mobile ) {
 					</div>
 				</div>
 				<div id="rw_wp_set_widgets">
-					<?php 
+					<?php
 rw_require_once_view( 'save.php' );
 ?>
 				</div>
 			</div>
 		</form>
 	</div>
-<?php 
+<?php
 fs_require_template( 'powered-by.php' );

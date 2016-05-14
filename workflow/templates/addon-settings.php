@@ -40,8 +40,8 @@
 		<?php foreach ( $addons_settings_tab as $tab_key => $tab_settings ) { ?>
 			<a href="<?php echo esc_url( add_query_arg( array( 'add-on' => $tab_key ) ) ); ?>"
 			   class="nav-tab<?php if ( $tab_key === $selected_key ) {
-				   echo ' nav-tab-active';
-			   } ?>"><?php echo $tab_settings['title'] ?></a>
+					echo ' nav-tab-active';
+				} ?>"><?php echo $tab_settings['title']; ?></a>
 		<?php } ?>
 	</h2>
 
@@ -90,7 +90,7 @@
 																<input type="text" id="<?php echo $field_id; ?>"
 																       name="addon-fields[<?php echo $field_id; ?>]"
 																       value="<?php echo $value; ?>"/>
-															<?php } else if ( 'textarea' === $field['type'] ) { ?>
+															<?php } elseif ( 'textarea' === $field['type'] ) { ?>
 																<textarea id="<?php echo $field_id; ?>"
 																          name="addon-fields[<?php echo $field_id; ?>]"
 																          rows="5"><?php echo $value; ?></textarea>
@@ -108,28 +108,28 @@
 					}
 				?>
 				<p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary"
-				                         value="<?php _erw( 'save-changes' ) ?>"></p>
+				                         value="<?php _erw( 'save-changes' ); ?>"></p>
 			</div>
 			<div id="rw_wp_set_widgets" class="rw-static">
 				<div class="postbox">
-					<h3 class="gradient"><?php _erw( 'template-variables' ) ?></h3>
+					<h3 class="gradient"><?php _erw( 'template-variables' ); ?></h3>
 
 					<div class="inside">
 						<ul>
 							<li>
 								<b>{{vote}}</b>
 
-								<p class="description"><?php _erw( 'template_vote' ) ?></p>
+								<p class="description"><?php _erw( 'template_vote' ); ?></p>
 							</li>
 							<li>
 								<b>{{avg_rate}}</b>
 
-								<p class="description"><?php _erw( 'template_avg-rate' ) ?></p>
+								<p class="description"><?php _erw( 'template_avg-rate' ); ?></p>
 							</li>
 							<li>
 								<b>{{post.title}}</b>
 
-								<p class="description" id="tagline-description"><?php _erw( 'template_title' ) ?></p>
+								<p class="description" id="tagline-description"><?php _erw( 'template_title' ); ?></p>
 							</li>
 						</ul>
 					</div>

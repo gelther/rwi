@@ -4,72 +4,72 @@
 $all_categories = get_categories();
 
 if ( is_array( $all_categories ) && count( $all_categories ) > 0 ) {
-    $all = in_array( '-1', rw_settings()->categories );
-    ?>
+	$all = in_array( '-1', rw_settings()->categories );
+	?>
 		<div id="rw_categories_availability_settings" class="has-sidebar has-right-sidebar">
 			<div class="has-sidebar-content">
 				<div class="postbox rw-body">
-					<h3><?php 
-    _erw( 'categories-visibility-settings' );
-    ?>
+					<h3><?php
+	_erw( 'categories-visibility-settings' );
+	?>
 </h3>
 
 					<div class="inside rw-ui-content-container rw-no-radius">
 						<select data-placeholder="Choose Categories..." multiple>
-							<option value="-1" <?php 
-    if ( $all ) {
-        echo  ' selected="selected"' ;
-    }
-    ?>
-><?php 
-    _erw( 'all-categories' );
-    ?>
+							<option value="-1" <?php
+	if ( $all ) {
+		echo  ' selected="selected"' ;
+	}
+	?>
+><?php
+	_erw( 'all-categories' );
+	?>
 </option>
-							<?php 
-    foreach ( $all_categories as $category ) {
-        $selected = $all || in_array( $category->cat_ID, rw_settings()->categories );
-        ?>
-								<option value="<?php 
-        echo  $category->cat_ID ;
-        ?>
-" <?php 
-        if ( $selected ) {
-            echo  ' selected="selected"' ;
-        }
-        ?>
-><?php 
-        echo  $category->cat_name ;
-        ?>
+							<?php
+	foreach ( $all_categories as $category ) {
+		$selected = $all || in_array( $category->cat_ID, rw_settings()->categories );
+		?>
+								<option value="<?php
+		echo  $category->cat_ID ;
+		?>
+" <?php
+		if ( $selected ) {
+			echo  ' selected="selected"' ;
+		}
+		?>
+><?php
+		echo  $category->cat_name ;
+		?>
 </option>
-							<?php 
-    }
-    ?>
+							<?php
+	}
+	?>
 						</select>
 
 						<div style="display: none">
-							<input type="checkbox" name="rw_categories[]" value="-1" <?php 
-    if ( $all ) {
-        echo  ' checked="checked"' ;
-    }
-    ?>
+							<input type="checkbox" name="rw_categories[]" value="-1" <?php
+	if ( $all ) {
+		echo  ' checked="checked"' ;
+	}
+	?>
 >
-							<?php 
-    foreach ( $all_categories as $category ) {
-        $selected = $all || in_array( $category->cat_ID, rw_settings()->categories );
-        ?>
+							<?php
+	foreach ( $all_categories as $category ) {
+		$selected = $all || in_array( $category->cat_ID, rw_settings()->categories );
+		?>
 								<input type="checkbox" name="rw_categories[]"
-								       value="<?php 
-        echo  $category->cat_ID ;
-        ?>
-" <?php 
-        if ( $selected ) {
-            echo  ' checked="checked"' ;
-        }
-        ?>
+								       value="<?php
+		echo  $category->cat_ID ;
+		?>
+" <?php
+		if ( $selected ) {
+			echo  ' checked="checked"' ;
+		}
+		?>
 >
-							<?php 
-    }
-    ?>
+							<?php
+	}
+	?>
 						</div>
 						<script>
 							(function ($) {
@@ -84,16 +84,14 @@ if ( is_array( $all_categories ) && count( $all_categories ) > 0 ) {
 											// Selected all categories.
 											$(this).find('option').prop('selected', true);
 											$(this).parents().find('input[type=checkbox]').prop('checked', true);
-										}
-										else {
+										} else {
 											if (!sel_all.is(':selected') && ($(this).find('option').length - 1) == $(this).find('option:selected').length) {
 												// Select all.
 												sel_all.prop('selected', true);
 												sel_all_check.prop('checked', true);
 											}
 										}
-									}
-									else if (params.deselected) {
+									} elseif (params.deselected) {
 										$(this).parents().find('input[type=checkbox][value=' + params.deselected + ']').prop('checked', false);
 
 										// Deselect "All Categories".
@@ -109,5 +107,5 @@ if ( is_array( $all_categories ) && count( $all_categories ) > 0 ) {
 				</div>
 			</div>
 		</div>
-	<?php 
+	<?php
 }
