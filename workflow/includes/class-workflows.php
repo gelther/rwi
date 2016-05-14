@@ -173,7 +173,7 @@
 		 * @author Leo Fajardo (@leorw)
 		 * @since  1.0.0
 		 *
-		 * @param string $addon The id of the target add-on.
+		 * @param  string         $addon The id of the target add-on.
 		 *
 		 * @return boolean|object
 		 */
@@ -418,7 +418,7 @@
 		 * @author Leo Fajardo (@leorw)
 		 * @since  1.0.0
 		 *
-		 * @param string $name The workflow name used in generating the workflow ID.
+		 * @param  string $name The workflow name used in generating the workflow ID.
 		 *
 		 * @return string
 		 */
@@ -499,8 +499,8 @@
 						__rw( 'invalid-workflow-name' )
 					)
 				);
-                                
-                                echo json_encode( $message );
+
+								echo json_encode( $message );
 				exit;
 			}
 
@@ -647,7 +647,7 @@
 		 * @author Leo Fajardo (@leorw)
 		 * @since  1.0.0
 		 *
-		 * @param array $properties
+		 * @param  array  $properties
 		 *
 		 * @return string
 		 */
@@ -679,10 +679,10 @@
 		 * @since  1.0.0
 		 */
 		function _delete_workflow( $id ) {
-                        if ( empty( $id ) ) {
-                            return;
-                        }
-                        
+						if ( empty( $id ) ) {
+							return;
+						}
+
 			$update = false;
 
 			if ( isset( $this->_workflows->{$id} ) ) {
@@ -711,7 +711,7 @@
 		 * @author Leo Fajardo (@leorw)
 		 * @since  1.0.0
 		 *
-		 * @param array $ratingwidget_submenus Current submenu items added by RatingWiget.
+		 * @param  array $ratingwidget_submenus Current submenu items added by RatingWiget.
 		 *
 		 * @return array
 		 */
@@ -800,7 +800,7 @@
 				if ( ! empty( $addon ) ) {
 					$settings = isset( $this->_addons_settings->{$addon} ) ? $this->_addons_settings->{$addon} : false;
 					if ( false === $settings ) {
-						$settings                         = new stdClass();
+						$settings = new stdClass();
 						$this->_addons_settings->{$addon} = $settings;
 					}
 
@@ -853,4 +853,5 @@
 
 			echo '<script>var WORKFLOWS_SETTINGS = ' . json_encode( $data ) . '</script>';
 		}
+
 	}
