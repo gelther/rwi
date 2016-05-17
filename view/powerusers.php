@@ -1,7 +1,7 @@
 <?php
 
 wp_enqueue_script( 'ace', WP_RW__PLUGIN_URL . 'resources/js/ace/ace.js' );
-$custom_settings = rw_settings()->custom_settings;
+$custom_settings         = rw_settings()->custom_settings;
 $custom_settings_enabled = rw_settings()->custom_settings_enabled;
 ?>
 <style>
@@ -16,36 +16,36 @@ $custom_settings_enabled = rw_settings()->custom_settings_enabled;
 <div id="rw_power_options" class="has-sidebar has-right-sidebar">
 	<div class="has-sidebar-content">
 		<div class="postbox rw-body">
-			<h3><?php 
+			<h3><?php
 _erw( 'power-user-settings' );
 ?>
 </h3>
 
 			<div class="inside rw-ui-content-container rw-no-radius">
 				<label><input id="rw_custom_settings_enabled" name="rw_custom_settings_enabled" type="checkbox"
-				              value="1"<?php 
+				              value="1"<?php
 if ( $custom_settings_enabled ) {
     echo  ' checked="checked"' ;
 }
 ?>
- /> <?php 
+ /> <?php
 _erw( 'activate' );
 ?>
- / <?php 
+ / <?php
 _erw( 'in-activate' );
 ?>
 </label>
 
 				<p>Here you can customize the ratings according to our <a
-						href="<?php 
+						href="<?php
 rw_the_site_url( 'documentation' );
 ?>
 " target="_blank">advanced documentation</a>.
 				</p>
 				<textarea name="rw_custom_settings" style="display: none;"></textarea>
 
-				<div id="js_editor" style="min-height: 350px; left: 1px;"><?php 
-echo  ( !empty($custom_settings) ? stripslashes( $custom_settings ) : '/*
+				<div id="js_editor" style="min-height: 350px; left: 1px;"><?php
+echo  ( ! empty( $custom_settings ) ? stripslashes( $custom_settings ) : '/**
  * We recommend to use this section only if you familiar with JavaScript.
  *
  * For your convenience, we have collected a set of examples which we are frequently
@@ -74,8 +74,8 @@ options.showInfo = false;
 //      http://rating-widget.com/support/how-can-i-customize-the-ratings-image-theme-in-wordpress/
 options.style = RW.CUSTOM;
 options.imgUrl = {
-	ltr: "http://i.rw.gs/s/flat_yellow.m.png", // Left to Right rating
-	rtl: "http://i.rw.gs/s/flat_yellow.m.png"  // Right to Left rating
+    ltr: "http://i.rw.gs/s/flat_yellow.m.png", // Left to Right rating
+    rtl: "http://i.rw.gs/s/flat_yellow.m.png"  // Right to Left rating
 };
 
 // Example: Disable mobile optimized UI (the fixed star button).
@@ -96,7 +96,8 @@ options.mobile = {"showTrigger": false};
 
 			disableEditor(!$('#rw_custom_settings_enabled').prop('checked'));
 
-			function disableEditor(is_disabled) {
+			function disableEditor(is_disabled)
+			{
 				if (is_disabled) {
 					js_editor.setOptions({
 						highlightActiveLine: false,
