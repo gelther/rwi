@@ -1,20 +1,20 @@
 <?php
-	/**
-	 * Template file called from RW_Workflows->_workflows_page_render method.
-	 *
-	 * @package     RatingWidget
-	 * @copyright   Copyright (c) 2015, Rating-Widget, Inc.
-	 * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
-	 * @since       1.0.0
-	 */
+    /**
+     * Template file called from RW_Workflows->_workflows_page_render method.
+     *
+     * @package     RatingWidget
+     * @copyright   Copyright (c) 2015, Rating-Widget, Inc.
+     * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+     * @since       1.0.0
+     */
 
-	if ( ! defined( 'ABSPATH' ) ) {
-		exit;
-	}
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
 ?>
 <div class="wrap rw-dir-ltr rw-wp-container">
 <h2 class="nav-tab-wrapper rw-nav-tab-wrapper">
-	<a href="#" class="nav-tab nav-tab-active"><?php _erw( 'workflows' ) ?></a>
+	<a href="#" class="nav-tab nav-tab-active"><?php _erw( 'workflows' ); ?></a>
 	<a target="_blank" href="https://rating-widget.com/support/get-started-with-workflows/"
 	   class="nav-tab"><?php _erw( 'workflows_get-started', WP_WF__SLUG ); ?></a>
 </h2>
@@ -28,12 +28,12 @@
 					<div id="workflows" class="tab-pane active">
 						<p>
 							<button data-toggle="tab" href="#edit-workflow" id="new-workflow"
-							        class="button button-primary"><?php _erw( 'new-workflow' ) ?></button>
+							        class="button button-primary"><?php _erw( 'new-workflow' ); ?></button>
 						</p>
 						<div class="panel panel-default">
 							<div class="panel-heading"></div>
 							<div class="panel-body">
-								<p><?php _erw( 'workflows_change-order' ) ?></p>
+								<p><?php _erw( 'workflows_change-order' ); ?></p>
 							</div>
 							<div class="list-group"></div>
 						</div>
@@ -42,22 +42,22 @@
 						<div class="form-horizontal">
 							<ul class="nav nav-pills">
 								<li class="active"><a href="#edit-name"
-								                      data-toggle="tab"><?php _erw( 'name' ) ?></a></li>
+								                      data-toggle="tab"><?php _erw( 'name' ); ?></a></li>
 								<li class="disabled"><a
-										href="#edit-conditions"><?php _erw( 'conditions' ) ?></a></li>
+										href="#edit-conditions"><?php _erw( 'conditions' ); ?></a></li>
 								<li class="disabled"><a
-										href="#edit-actions"><?php _erw( 'actions' ) ?></a>
+										href="#edit-actions"><?php _erw( 'actions' ); ?></a>
 								</li>
-								<li class="disabled"><a href="#edit-events"><?php _erw( 'events' ) ?></a>
+								<li class="disabled"><a href="#edit-events"><?php _erw( 'events' ); ?></a>
 								</li>
 								<li class="disabled"><a
-										href="#edit-summary"><?php _erw( 'summary' ) ?></a>
+										href="#edit-summary"><?php _erw( 'summary' ); ?></a>
 								</li>
 							</ul>
 							<div class="tab-content">
 								<div id="edit-name" class="tab-pane workflow-step active" data-step="edit-workflow-name"
 								     data-next-step="#edit-conditions">
-									<h3><span><?php _erw( 'workflow-name' ) ?></span></h3>
+									<h3><span><?php _erw( 'workflow-name' ); ?></span></h3>
 
 									<div class="form-group">
 										<div class="col-sm-5">
@@ -67,47 +67,47 @@
 									<div class="form-group">
 										<div class="col-sm-5">
 											<button type="submit" class="button button-secondary next-step"
-											        data-loading-text="<?php _erw( 'saving' ) ?>"><?php _erw( 'next-step' ) ?></button>
+											        data-loading-text="<?php _erw( 'saving' ); ?>"><?php _erw( 'next-step' ); ?></button>
 											<button type="submit" class="button button-secondary save"
-											        href="#edit-summary"><?php _erw( 'update-name' ) ?></button>
+											        href="#edit-summary"><?php _erw( 'update-name' ); ?></button>
 											<button type="submit" class="button cancel-save" href="#edit-summary"
-											        data-toggle="tab"><?php _erw( 'cancel' ) ?></button>
+											        data-toggle="tab"><?php _erw( 'cancel' ); ?></button>
 										</div>
 									</div>
 								</div>
 								<div id="edit-conditions" class="tab-pane workflow-step">
 									<button type="submit" class="button button-secondary next-step"
-									        href="#edit-actions" data-loading-text="<?php _erw( 'saving' ) ?>"><?php _erw( 'next-step' ) ?></button>
+									        href="#edit-actions" data-loading-text="<?php _erw( 'saving' ); ?>"><?php _erw( 'next-step' ); ?></button>
 									<button type="submit" class="button button-secondary save"
-									        href="#edit-summary"><?php _erw( 'update-conditions' ) ?></button>
+									        href="#edit-summary"><?php _erw( 'update-conditions' ); ?></button>
 									<button type="submit" class="button cancel-save" href="#edit-summary"
-									        data-toggle="tab"><?php _erw( 'cancel' ) ?></button>
+									        data-toggle="tab"><?php _erw( 'cancel' ); ?></button>
 									<p></p>
 								</div>
 								<div id="edit-actions" class="tab-pane workflow-step">
 									<button type="submit" class="button button-secondary next-step"
-									        href="#edit-events" data-loading-text="<?php _erw( 'saving' ) ?>"><?php _erw( 'next-step' ) ?></button>
+									        href="#edit-events" data-loading-text="<?php _erw( 'saving' ); ?>"><?php _erw( 'next-step' ); ?></button>
 									<button type="submit" class="button button-secondary save"
-									        href="#edit-summary"><?php _erw( 'update-actions' ) ?></button>
+									        href="#edit-summary"><?php _erw( 'update-actions' ); ?></button>
 									<button type="submit" class="button cancel-save" href="#edit-summary"
-									        data-toggle="tab"><?php _erw( 'cancel' ) ?></button>
+									        data-toggle="tab"><?php _erw( 'cancel' ); ?></button>
 									<p></p>
 								</div>
 								<div id="edit-events" class="tab-pane workflow-step">
 									<button type="submit" class="button button-secondary next-step"
-									        href="#edit-summary" data-loading-text="<?php _erw( 'saving' ) ?>"><?php _erw( 'next-step' ) ?></button>
+									        href="#edit-summary" data-loading-text="<?php _erw( 'saving' ); ?>"><?php _erw( 'next-step' ); ?></button>
 									<button type="submit" class="button button-secondary save"
-									        href="#edit-summary"><?php _erw( 'update-events' ) ?></button>
+									        href="#edit-summary"><?php _erw( 'update-events' ); ?></button>
 									<button type="submit" class="button cancel-save" href="#edit-summary"
-									        data-toggle="tab"><?php _erw( 'cancel' ) ?></button>
+									        data-toggle="tab"><?php _erw( 'cancel' ); ?></button>
 									<p></p>
 								</div>
 								<div id="edit-summary" class="tab-pane workflow-step">
 									<button type="submit"
-									        class="button button-secondary activate-workflow"><?php _erw( 'activate' ) ?></button>
+									        class="button button-secondary activate-workflow"><?php _erw( 'activate' ); ?></button>
 									<button type="submit" class="button button-secondary view-workflows"
 									        href="#workflows"
-									        data-toggle="tab"><?php _erw( 'view-all-workflows' ) ?></button>
+									        data-toggle="tab"><?php _erw( 'view-all-workflows' ); ?></button>
 									<p></p>
 								</div>
 							</div>
@@ -138,7 +138,7 @@
 
 <!-- Edit conditions -->
 <div class="workflow-template" data-class="edit-conditions">
-	<h3><span><?php _erw( 'conditions' ) ?></span></h3>
+	<h3><span><?php _erw( 'conditions' ); ?></span></h3>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -148,7 +148,7 @@
 
 <!-- Edit actions -->
 <div class="workflow-template" data-class="edit-actions">
-	<h3><span><?php _erw( 'actions' ) ?></span></h3>
+	<h3><span><?php _erw( 'actions' ); ?></span></h3>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -167,7 +167,7 @@
 				</div>
 				<p class="and-operation">
 					<a href="javascript:void(0);" class="add-operation"
-					   tabindex="-1">+ <?php echo strtoupper( __rw( 'and' ) ) ?></a>
+					   tabindex="-1">+ <?php echo strtoupper( __rw( 'and' ) ); ?></a>
 				</p>
 			</div>
 		</div>
@@ -176,7 +176,7 @@
 
 <!-- Edit event types -->
 <div class="workflow-template" data-class="edit-events">
-	<h3><span><?php _erw( 'events' ) ?></span></h3>
+	<h3><span><?php _erw( 'events' ); ?></span></h3>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -196,7 +196,7 @@
 				</div>
 				<p class="and-operation">
 					<a href="javascript:void(0);" class="add-operation"
-					   tabindex="-1">+ <?php echo strtoupper( __rw( 'OR' ) ) ?></a>
+					   tabindex="-1">+ <?php echo strtoupper( __rw( 'OR' ) ); ?></a>
 				</p>
 			</div>
 		</div>
@@ -214,10 +214,10 @@
 						<span class="pull-right">
 							<button class="button button-primary button-small edit-workflow edit-conditions"
 							        data-toggle="tab"
-							        href="#edit-conditions"><?php _erw( 'edit' ) ?></button>
+							        href="#edit-conditions"><?php _erw( 'edit' ); ?></button>
 						</span>
 
-				<div><?php _erw( 'if' ) ?> ...</div>
+				<div><?php _erw( 'if' ); ?> ...</div>
 			</div>
 			<ul class="list-group"></ul>
 
@@ -226,10 +226,10 @@
 						<span class="pull-right">
 							<button class="button button-primary button-small edit-workflow edit-actions"
 							        data-toggle="tab"
-							        href="#edit-actions"><?php _erw( 'edit' ) ?></button>
+							        href="#edit-actions"><?php _erw( 'edit' ); ?></button>
 						</span>
 
-				<div><?php _erw( 'then' ) ?> ...</div>
+				<div><?php _erw( 'then' ); ?> ...</div>
 			</div>
 			<ul class="list-group"></ul>
 
@@ -237,10 +237,10 @@
 			<div>
 						<span class="pull-right">
 							<button class="button button-primary button-small edit-workflow edit-events"
-							        data-toggle="tab" href="#edit-events"><?php _erw( 'edit' ) ?></button>
+							        data-toggle="tab" href="#edit-events"><?php _erw( 'edit' ); ?></button>
 						</span>
 
-				<div><?php _erw( 'when' ) ?> ...</div>
+				<div><?php _erw( 'when' ); ?> ...</div>
 			</div>
 			<ul class="list-group"></ul>
 		</div>
@@ -249,7 +249,7 @@
 
 <!-- Single operation -->
 <div class="workflow-template" data-class="operation">
-	<i class="badge or"><?php strtolower( __rw( 'or' ) ) ?></i>
+	<i class="badge or"><?php strtolower( __rw( 'or' ) ); ?></i>
 
 	<div class="col"></div>
 	<div class="operation-inputs">
@@ -279,7 +279,7 @@
 		</div>
 	</div>
 	<p class="and-operation">
-		<a href="javascript:void(0);" class="add-operation" tabindex="-1">+ <?php echo strtoupper( __rw( 'and' ) ) ?></a>
+		<a href="javascript:void(0);" class="add-operation" tabindex="-1">+ <?php echo strtoupper( __rw( 'and' ) ); ?></a>
 	</p>
 </div>
 
@@ -298,7 +298,7 @@
 		</div>
 	</div>
 	<p class="and-operation">
-		<a href="javascript:void(0);" class="add-operation" tabindex="-1">+ <?php echo strtoupper( __rw( 'and' ) ) ?></a>
+		<a href="javascript:void(0);" class="add-operation" tabindex="-1">+ <?php echo strtoupper( __rw( 'and' ) ); ?></a>
 	</p>
 </div>
 
@@ -317,13 +317,13 @@
 		</div>
 	</div>
 	<p class="and-operation">
-		<a href="javascript:void(0);" class="add-operation" tabindex="-1">+ <?php echo strtoupper( __rw( 'or' ) ) ?></a>
+		<a href="javascript:void(0);" class="add-operation" tabindex="-1">+ <?php echo strtoupper( __rw( 'or' ) ); ?></a>
 	</p>
 </div>
 </form>
 
 <?php
-	// Allow other plugins to add HTML code below the <form> element. The Twitter add-on is using this action to add its own modal box that shows an information message after the add-on activation.
-	do_action( 'after_workflows_page_form_element' );
+    // Allow other plugins to add HTML code below the <form> element. The Twitter add-on is using this action to add its own modal box that shows an information message after the add-on activation.
+    do_action( 'after_workflows_page_form_element' );
 ?>
 </div>
