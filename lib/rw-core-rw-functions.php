@@ -1,10 +1,10 @@
 <?php
 
-if ( !defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
     die;
 }
 /* String Helpers.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_starts_with( $haystack, $needle )
 {
     $length = strlen( $needle );
@@ -14,7 +14,7 @@ function rw_starts_with( $haystack, $needle )
 function rw_ends_with( $haystack, $needle )
 {
     $length = strlen( $needle );
-    $start = $length * -1;
+    $start  = $length * -1;
     //negative
     return substr( $haystack, $start ) === $needle;
 }
@@ -22,22 +22,22 @@ function rw_ends_with( $haystack, $needle )
 function rw_last_index_of( $haystack, $needle )
 {
     $index = strpos( strrev( $haystack ), strrev( $needle ) );
-    
+
     if ( $index ) {
         $index = strlen( $haystack ) - strlen( $needle ) - $index;
         return $index;
     }
-    
+
     return -1;
 }
 
 function __rw( $key )
 {
     global  $rw_text ;
-    if ( !isset( $rw_text ) ) {
+    if ( ! isset( $rw_text ) ) {
         require_once dirname( __FILE__ ) . '/rw-text.php';
     }
-    return ( isset( $rw_text[$key] ) ? $rw_text[$key] : $key );
+    return ( isset( $rw_text[ $key ] ) ? $rw_text[ $key ] : $key );
 }
 
 function _erw( $key )
@@ -46,7 +46,7 @@ function _erw( $key )
 }
 
 /* Url.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_admin_url( $path = 'admin.php', $page = WP_RW__ADMIN_MENU_SLUG, $scheme = 'admin' )
 {
     echo  rw_get_admin_url( $path, $page, $scheme ) ;
@@ -74,23 +74,23 @@ function rw_get_site_url( $path = '' )
     if ( 0 === strpos( $path, 'http' ) ) {
         return $path;
     }
-    $anchor = '';
+    $anchor     = '';
     $anchor_pos = strpos( $path, '#' );
-    
+
     if ( false !== $anchor_pos ) {
         $anchor = substr( $path, $anchor_pos );
-        $path = substr( $path, 0, $anchor_pos );
+        $path   = substr( $path, 0, $anchor_pos );
     }
-    
-    $query = '';
+
+    $query     = '';
     $query_pos = strpos( $path, '?' );
-    
+
     if ( false !== $query_pos ) {
         $query = substr( $path, $query_pos );
-        $path = substr( $path, 0, $query_pos );
+        $path  = substr( $path, 0, $query_pos );
     }
-    
-    return ( empty($path) ? WP_RW__ADDRESS : WP_RW__ADDRESS . '/' . trim( $path, '/' ) . (( false === strpos( $path, '.' ) ? '/' : '' )) . $query . $anchor );
+
+    return ( empty( $path ) ? WP_RW__ADDRESS : WP_RW__ADDRESS . '/' . trim( $path, '/' ) . (( false === strpos( $path, '.' ) ? '/' : '' )) . $query . $anchor );
 }
 
 function rw_the_site_url( $path = '' )
@@ -113,7 +113,7 @@ function rw_get_js_url( $js )
     if ( rw_starts_with( $js, 'http' ) || rw_starts_with( $js, '//' ) ) {
         return $js;
     }
-    if ( (!WP_RW__LOCALHOST && !WP_RW__LOCALHOST_SCRIPTS || !WP_RW__DEBUG) && rw_ends_with( $js, '.php' ) ) {
+    if ( (! WP_RW__LOCALHOST && ! WP_RW__LOCALHOST_SCRIPTS || ! WP_RW__DEBUG) && rw_ends_with( $js, '.php' ) ) {
         $js = substr( $js, 0, strlen( $js ) - 3 ) . 'js';
     }
     return WP_RW__ADDRESS_JS . $js . '?ck=' . rw_get_url_daily_cache_killer();
@@ -124,7 +124,7 @@ function rw_get_css_url( $css )
     if ( rw_starts_with( $css, 'http' ) || rw_starts_with( $css, '//' ) ) {
         return $css;
     }
-    if ( (!WP_RW__LOCALHOST && !WP_RW__LOCALHOST_SCRIPTS || !WP_RW__DEBUG) && rw_ends_with( $css, '.php' ) ) {
+    if ( (! WP_RW__LOCALHOST && ! WP_RW__LOCALHOST_SCRIPTS || ! WP_RW__DEBUG) && rw_ends_with( $css, '.php' ) ) {
         $css = substr( $css, 0, strlen( $css ) - 3 ) . 'css';
     }
     return WP_RW__ADDRESS_CSS . $css . '?ck=' . rw_get_url_daily_cache_killer();
@@ -177,7 +177,7 @@ function rw_get_site_img_path( $path )
 }
 
 /* Views.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_get_view_path( $path )
 {
     return WP_RW__PLUGIN_VIEW_DIR . trim( $path, '/' );
@@ -216,7 +216,7 @@ function rw_require_once_view( $path, &$params = null )
 }
 
 /* Scripts and styles including.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_register_style( $handle, $src = false, $ver = WP_RW__VERSION )
 {
     wp_register_style(
@@ -258,7 +258,7 @@ function rw_enqueue_script( $handle, $src = false, $ver = WP_RW__VERSION )
 }
 
 /* Redirect.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_admin_redirect( $location = 'admin.php' )
 {
     rw_redirect( rw_get_admin_url( $location ) );
@@ -272,7 +272,7 @@ function rw_site_redirect( $location = '' )
 }
 
 /* Core Redirect (copied from BuddyPress).
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 /**
  * Redirects to another page, with a workaround for the IIS Set-Cookie bug.
  *
@@ -280,10 +280,10 @@ function rw_site_redirect( $location = '' )
  * @since 1.5.1
  * @uses  apply_filters() Calls 'wp_redirect' hook on $location and $status.
  *
- * @param string $location The path to redirect to
- * @param int    $status   Status code to use
+ * @param  string $location The path to redirect to
+ * @param  int    $status   Status code to use
  *
- * @return bool False if $location is not set
+ * @return bool             False if $location is not set
  */
 function rw_redirect( $location, $status = 302 )
 {
@@ -291,11 +291,11 @@ function rw_redirect( $location, $status = 302 )
     if ( headers_sent() ) {
         return false;
     }
-    if ( !$location ) {
+    if ( ! $location ) {
         return false;
     }
     $location = rw_sanitize_redirect( $location );
-    
+
     if ( $is_IIS ) {
         header( "Refresh: 0;url={$location}" );
     } else {
@@ -320,13 +320,13 @@ function rw_sanitize_redirect( $location )
     $location = preg_replace( '|[^a-z0-9-~+_.?#=&;,/:%!]|i', '', $location );
     $location = rw_kses_no_null( $location );
     // remove %0d and %0a from location
-    $strip = array( '%0d', '%0a' );
-    $found = true;
+    $strip    = array( '%0d', '%0a' );
+    $found    = true;
     while ( $found ) {
         $found = false;
         foreach ( (array) $strip as $val ) {
             while ( strpos( $location, $val ) !== false ) {
-                $found = true;
+                $found    = true;
                 $location = str_replace( $val, '', $location );
             }
         }
@@ -339,7 +339,7 @@ function rw_sanitize_redirect( $location )
  *
  * @since 1.0.0
  *
- * @param string $string
+ * @param  string $string
  *
  * @return string
  */
@@ -351,10 +351,10 @@ function rw_kses_no_null( $string )
 }
 
 /* Request handlers.
-	--------------------------------------------------------------------------------------------*/
+    --------------------------------------------------------------------------------------------*/
 function rw_request_get( $key, $def = false )
 {
-    return ( isset( $_REQUEST[$key] ) ? $_REQUEST[$key] : $def );
+    return ( isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : $def );
 }
 
 function rw_request_is_post()
@@ -369,15 +369,15 @@ function rw_request_is_get()
 
 function rw_request_is_action( $action, $action_key = 'action' )
 {
-    $is_action = !empty($_REQUEST[$action_key]) && $action === $_REQUEST[$action_key];
+    $is_action = ! empty( $_REQUEST[ $action_key ] ) && $action === $_REQUEST[ $action_key ];
     if ( $is_action ) {
         return true;
     }
-    
+
     if ( $action_key == 'action' ) {
         $action_key = 'rw_action';
-        return !empty($_REQUEST[$action_key]) && $action === $_REQUEST[$action_key];
+        return ! empty( $_REQUEST[ $action_key ] ) && $action === $_REQUEST[ $action_key ];
     }
-    
+
     return false;
 }

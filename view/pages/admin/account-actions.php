@@ -1,5 +1,5 @@
 <div id="rw_account_actions" class="postbox rw-body">
-	<h3><?php 
+	<h3><?php
 _erw( 'account-actions' );
 ?>
 </h3>
@@ -9,21 +9,21 @@ _erw( 'account-actions' );
 			<tr class="rw-odd">
 				<td>
 					<form class="rw-button-form" action="" method="POST"
-					      onsubmit="return confirm('<?php 
+					      onsubmit="return confirm('<?php
 _erw( 'default-settings-confirm' );
 ?>
 ');">
 						<input type="hidden" name="rw_action" value="default_settings">
-						<?php 
+						<?php
 wp_nonce_field( 'default_settings' );
 ?>
-						<input type="submit" class="button" value="<?php 
+						<input type="submit" class="button" value="<?php
 _erw( 'default-settings' );
 ?>
 ">
 					</form>
 				</td>
-				<td><span><?php 
+				<td><span><?php
 _erw( 'default-settings_desc' );
 ?>
 </span></td>
@@ -32,16 +32,16 @@ _erw( 'default-settings_desc' );
 				<td>
 					<form class="rw-button-form" action="" method="POST">
 						<input type="hidden" name="rw_action" value="clear_cache">
-						<?php 
+						<?php
 wp_nonce_field( 'clear_cache' );
 ?>
-						<input type="submit" class="button button-secondary" value="<?php 
+						<input type="submit" class="button button-secondary" value="<?php
 _erw( 'clear-cache' );
 ?>
 ">
 					</form>
 				</td>
-				<td><span><?php 
+				<td><span><?php
 _erw( 'clear-cache_desc' );
 ?>
 </span></td>
@@ -49,22 +49,22 @@ _erw( 'clear-cache_desc' );
 			<tr class="rw-odd">
 				<td>
 					<form class="rw-button-form" action="" method="POST"
-					      onsubmit="return confirm('<?php 
+					      onsubmit="return confirm('<?php
 _erw( 'clear-ratings_confirm' );
 ?>
 ');">
 						<input type="hidden" name="rw_action" value="clear_ratings">
-						<?php 
+						<?php
 wp_nonce_field( 'clear_ratings' );
 ?>
 						<input type="submit" class="button button-secondary rw-delete-button"
-						       value="<?php 
+						       value="<?php
 _erw( 'clear-ratings' );
 ?>
 ">
 					</form>
 				</td>
-				<td><span><?php 
+				<td><span><?php
 _erw( 'clear-ratings_desc' );
 ?>
 </span></td>
@@ -72,52 +72,52 @@ _erw( 'clear-ratings_desc' );
 			<tr class="rw-even">
 				<td>
 					<form class="rw-button-form" action="" method="POST"
-					      onsubmit="return confirm('<?php 
+					      onsubmit="return confirm('<?php
 _erw( 'start-fresh_confirm' );
 ?>
 ');">
 						<input type="hidden" name="rw_action" value="go_factory">
-						<?php 
+						<?php
 wp_nonce_field( 'go_factory' );
 ?>
 						<input type="submit" class="button button-secondary rw-delete-button"
-						       value="<?php 
+						       value="<?php
 _erw( 'start-fresh' );
 ?>
 ">
 					</form>
 				</td>
-				<td><span><?php 
+				<td><span><?php
 _erw( 'start-fresh_desc' );
 ?>
 </span></td>
 			</tr>
-			<?php 
+			<?php
 
 if ( WP_RW__DEBUG ) {
     ?>
 				<!--<tr class="rw-odd">
 					<td>
-						<form class="rw-button-form" action="" method="POST" onsubmit="return confirm('<?php 
+						<form class="rw-button-form" action="" method="POST" onsubmit="return confirm('<?php
     _e( 'Are you sure you want to delete the account?', WP_RW__ID );
     ?>
 ');">
 							<input type="hidden" name="rw_action" value="delete_account">
-							<?php 
+							<?php
     wp_nonce_field( 'delete_account' );
     ?>
-							<input type="submit" class="button button-secondary rw-delete-button" value="<?php 
+							<input type="submit" class="button button-secondary rw-delete-button" value="<?php
     _e( 'Delete Account', WP_RW__ID );
     ?>
 ">
 						</form>
 					</td>
-					<td><span><?php 
+					<td><span><?php
     _e( 'Delete the account.', WP_RW__ID );
     ?>
 </span></td>
 				</tr>-->
-			<?php 
+			<?php
 }
 
 ?>
@@ -125,18 +125,18 @@ if ( WP_RW__DEBUG ) {
 	</div>
 </div>
 
-<?php 
+<?php
 $rw_account = rw_account();
 ?>
 <div id="rw_account" class="postbox rw-body">
-	<h3><?php 
+	<h3><?php
 _erw( 'ratingwidget-account' );
 ?>
 </h3>
 
 	<div class="inside">
 		<table id="rw_account_details" cellspacing="0" class="fs-key-value-table">
-			<?php 
+			<?php
 $profile = array();
 //		if (isset($user->email) && false !== strpos($user->email, '@'))
 //			$profile[] = array('id' => 'email', 'title' => __rw('email'), 'value' => $user->email);
@@ -163,73 +163,73 @@ $profile[] = array(
     'value' => ( $rw_account->has_secret_key() ? $rw_account->site_secret_key : __rw( 'no-secret' ) ),
 );
 ?>
-			<?php 
+			<?php
 $odd = true;
 foreach ( $profile as $p ) {
     ?>
-					<tr class="fs-field-<?php 
+					<tr class="fs-field-<?php
     echo  $p['id'] ;
     if ( $odd ) {
         ?>
- alternate<?php 
+ alternate<?php
     }
     ?>
 ">
 						<td>
-							<nobr><?php 
+							<nobr><?php
     echo  $p['title'] ;
     ?>
 :</nobr>
 						</td>
 						<td>
-							<code><?php 
+							<code><?php
     echo  htmlspecialchars( $p['value'] ) ;
     ?>
 </code>
 						</td>
-						<?php 
-    
+						<?php
+
     if ( WP_RW__DEBUG ) {
         ?>
 							<td class="fs-right">
-								<form action="<?php 
+								<form action="<?php
         echo  rw_fs()->_get_admin_page_url( 'account' ) ;
         ?>
 " method="POST"
-								      onsubmit="var val = prompt('<?php 
+								      onsubmit="var val = prompt('<?php
         printf( __rw( 'what-is-your' ), $p['title'] );
         ?>
-', '<?php 
+', '<?php
         echo  $p['value'] ;
         ?>
-'); if (null == val || '' === val) return false; jQuery('input[name=rw_<?php 
+'); if (null == val || '' === val) return false; jQuery('input[name=rw_<?php
         echo  $p['id'] ;
         ?>
 ]').val(val); return true;">
-									<input type="hidden" name="rw_action" value="update_<?php 
+									<input type="hidden" name="rw_action" value="update_<?php
         echo  $p['id'] ;
         ?>
 ">
-									<input type="hidden" name="rw_<?php 
+									<input type="hidden" name="rw_<?php
         echo  $p['id'] ;
         ?>
 " value="">
-									<?php 
+									<?php
         wp_nonce_field( 'update_' . $p['id'] );
         ?>
-									<input type="submit" class="button button-small" value="<?php 
+									<input type="submit" class="button button-small" value="<?php
         _erw( 'edit' );
         ?>
 ">
 								</form>
 							</td>
-						<?php 
+						<?php
     }
-    
+
     ?>
 					</tr>
-					<?php 
-    $odd = !$odd;
+					<?php
+    $odd = ! $odd;
 }
 ?>
 		</table>
